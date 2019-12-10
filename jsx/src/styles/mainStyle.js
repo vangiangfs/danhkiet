@@ -279,7 +279,7 @@ export default StyleSheet.create({
     containTextHeader2:{
         alignItems:'center',
         flex:9,
-        marginTop:20,
+        marginTop:30,
     },
     textHeader2:{
         color:'#ffffff',
@@ -370,7 +370,7 @@ export default StyleSheet.create({
         backgroundColor:'#f0f0f0'
     },
     buttonBack2:{
-        marginTop:20,
+        marginTop:30,
         marginLeft:20,
     },
     container3:{
@@ -440,7 +440,7 @@ export default StyleSheet.create({
     },
     header4:{
         width:'100%',
-        height:buttonHeight* 5,
+        height:buttonHeight* 6,
         backgroundColor:'#f42535',
         margin:0,
         flexDirection:'row'
@@ -795,5 +795,28 @@ export default StyleSheet.create({
         backgroundColor:'#ffffff',justifyContent:'center', alignItems:'center', 
         width:80, height:80,
         borderRadius:40,
+    },
+    body4_content1:{
+        flex:4,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    body4_content2:{
+        flex:6,
+        alignItems:'center',
+        justifyContent:'space-between',
+        flexDirection:'column'
+    },
+    body4_content2b_1:{
+        backgroundColor:'red', width:'31%', height:0.12*height, justifyContent:'center',alignItems:'center',
+        borderRadius:5
+    },
+    body4_content2b_2:{
+        backgroundColor:'white', width:'31%', height:0.12*height, justifyContent:'center',alignItems:'center',
+        borderRadius:5,
+        shadowOffset:{  width: 10,  height: 10,  },
+        shadowColor: 'black',
     }
+
+    
 });

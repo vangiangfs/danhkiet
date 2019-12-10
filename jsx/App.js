@@ -36,6 +36,7 @@ import ChinhSuaThongTinTaiKhoanKhachHang from './screens/chinhSuaThongTinTaiKhoa
 import ChinhSuaThongTinTaiKhoanKyThuat from './screens/chinhSuaThongTinTaiKhoanKyThuat';
 import ThongTinKyThuat_Goi from './screens/thongTinKyThuat_Goi';
 import ThongTinKyThuat_BatMay from './screens/thongTinKyThuat_BatMay';
+import GiaHanTaiKhoan from './screens/giaHanTaiKhoan';
 
 export default class App extends Component{
 	render(){
@@ -64,8 +65,9 @@ export default class App extends Component{
 			//<ThongTinKyThuat></ThongTinKyThuat>
 			//<ChinhSuaThongTinTaiKhoanKhachHang></ChinhSuaThongTinTaiKhoanKhachHang>
 			//<ChinhSuaThongTinTaiKhoanKyThuat></ChinhSuaThongTinTaiKhoanKyThuat>
-			<ThongTinKyThuat_Goi></ThongTinKyThuat_Goi>
+			//<ThongTinKyThuat_Goi></ThongTinKyThuat_Goi>
 			//<ThongTinKyThuat_BatMay></ThongTinKyThuat_BatMay>
+			<GiaHanTaiKhoan></GiaHanTaiKhoan>
 		);
 	}
 }
