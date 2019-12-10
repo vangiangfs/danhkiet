@@ -12,9 +12,9 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
  * Database config
  */
 
-$dbDefault['hostname'] = '117.6.94.126';
+$dbDefault['hostname'] = 'localhost';
 $dbDefault['hostport'] = 3306;
-$dbDefault['username'] = 'huypv';
-$dbDefault['password'] = '123456';
-$dbDefault['database'] = 'fs_face.edu.vn';
+$dbDefault['username'] = 'danhkiet_db';
+$dbDefault['password'] = '23hvwbAq';
+$dbDefault['database'] = 'danhkiet_db';
 $dbDefault['dbdriver'] = 'mysql';

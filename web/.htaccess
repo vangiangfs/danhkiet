@@ -5,5 +5,5 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(index.php|index.html)$ index.php?module=home&view=home&Itemid=1[L]
 RewriteRule ^$ index.php [L]
 
-RewriteRule ^([^/]*).ajax$ index.php?module=ajax&task=ajax&raw=1&task=$1&%{QUERY_STRING} [L]
+RewriteRule ^([^/]*).api$ index.php?module=ajax&task=ajax&raw=1&task=$1&%{QUERY_STRING} [L]
 RewriteRule ^doi-mat-khau$ index.php?module=members&view=members&task=update_forgot_pass&Itemid=10&%{QUERY_STRING} [L]

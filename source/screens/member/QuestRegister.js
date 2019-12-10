@@ -1,20 +1,125 @@
 import React, {Component} from 'react';
+
 import {
 	View,
 	Text,
 	KeyboardAvoidingView,
 	Image,
 	TouchableOpacity,
-	StyleSheet,
+	Picker,
     TextInput,
     ScrollView,
-    StatusBar,
+    Alert,
     Dimensions
-}
-from 'react-native';
+} from 'react-native';
+
 import mainStyle from '../../src/styles/mainStyle';
 
+import DateTimePicker from "react-native-modal-datetime-picker";
+
+import {submitRegister} from '../../src/api/apiMember';
+
 export default class QuestRegister extends Component{
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            re_password: '',
+            password: '',
+            first_name: '',
+            last_name: '',
+            email: '',
+            mobile: '',
+            address: '',
+            gender: 'male',
+            buttonText: 'Đăng Ký',
+            date: new Date(),
+            isDateTimePickerVisible: false,
+            type: 'guest'
+		}
+    }
+
+    componentDidMount() {
+        
+    }
+
+    onSubmit(){
+        var { type, mobile, password, re_password, email, first_name, last_name, birthday, gender, address } = this.state;
+
+        if(mobile == ''){
+            Alert.alert('Thông báo', 'Bạn vui lòng nhập số điện thoại.');
+            return;
+        }
+
+        if(password == ''){
+            Alert.alert('Thông báo', 'Bạn vui lòng nhập mật khẩu.');
+            return;
+        }
+
+        if(re_password != password){
+            Alert.alert('Thông báo', 'Nhập lại mật khẩu không đúng.');
+            return;
+        }
+
+        if(first_name == ''){
+            Alert.alert('Thông báo', 'Bạn vui lòng nhập họ.');
+            return;
+        }
+
+        if(last_name == ''){
+            Alert.alert('Thông báo', 'Bạn vui lòng nhập tên.');
+            return;
+        }
+
+        if(address == ''){
+            Alert.alert('Thông báo', 'Bạn vui lòng nhập địa chỉ.');
+            return;
+        }
+
+        this.setState({ buttonText: 'Đang xử lý...'});
+
+        submitRegister( type, mobile, password, email, first_name, last_name, birthday, gender, address )
+        .then(responseJson => {
+        
+			if(responseJson.error == '0'){
+                Alert.alert('Thông báo', responseJson.message,[
+                  {text: 'OK', onPress: () => this.props.navigation.navigate('LoginScreen', {draft: responseJson.draft})},
+                ]);
+            }else {
+                Alert.alert('Thông báo', responseJson.message);
+                this.setState({ buttonText: 'Registration'});
+            }
+            
+        }).catch(err => {
+            Alert.alert('Thông báo!', error.message);
+
+            this.setState({ buttonText: 'Registration'});
+        });
+    }
+
+    showDateTimePicker = () => {
+        this.setState({ isDateTimePickerVisible: true });
+	};
+
+	hideDateTimePicker = () => {
+		this.setState({ isDateTimePickerVisible: false });
+	};
+
+	handleDatePicked = date => {
+        // returns the month (from 0 to 11)
+        var month = date.getMonth() + 1
+        // returns the day of the month (from 1 to 31)
+        var day = date.getDate()
+        // returns the year (four digits)
+        var year = date.getFullYear()
+        var birthday = day + "/" + month + "/" + year;
+        this.setState({date, birthday});
+		// this.setDatePicker(date);
+		this.hideDateTimePicker();
+	};
+
+
 	render() {
 		return (
             <KeyboardAvoidingView keyboardVerticalOffset='0' behavior="padding" enabled>
@@ -39,49 +144,103 @@ export default class QuestRegister extends Component{
                     <View style = {mainStyle.body}>
                         <View style = {mainStyle.phone}>
                             <Text style = {mainStyle.titleInput}>Số điện thoại</Text>
-                            <TextInput style = {mainStyle.input100Percents} placeholder="Nhập vào số điện thoại"/>
+                            <TextInput style = {mainStyle.input100Percents} placeholder="Nhập vào số điện thoại" keyboardType='phone-pad'
+                                value={this.state.mobile}
+                                returnKeyType="next"
+                                onSubmitEditing={() =>this.regPassword.focus()}
+                                onChangeText={(mobile) => this.setState({ mobile })}/>
                         </View>
                         <View style = {mainStyle.password}>
                             <Text style = {mainStyle.titleInput}>Mật Khẩu</Text>
-                            <TextInput style = {mainStyle.input100Percents} secureTextEntry = {true} placeholder="Nhập vào mật khẩu"/>
+                            <TextInput style = {mainStyle.input100Percents} secureTextEntry = {true} placeholder="Nhập vào mật khẩu"
+                                value={this.state.password}
+                                returnKeyType="next"
+                                ref={(input) => { this.regPassword = input; }}
+                                onSubmitEditing={() =>this.regRePassword.focus()}
+                                onChangeText={(password) => this.setState({ password })}/>
                         </View>
                         <View style = {mainStyle.againPassword}>
-                            <TextInput style = {mainStyle.input100Percents} secureTextEntry = {true} placeholder="Xác nhận mật khẩu"/>
+                            <TextInput style = {mainStyle.input100Percents} secureTextEntry = {true} placeholder="Xác nhận mật khẩu"
+                                value={this.state.re_password}
+                                returnKeyType="next"
+                                ref={(input) => { this.regRePassword = input; }}
+                                onSubmitEditing={() =>this.regEmail.focus()}
+                                onChangeText={(re_password) => this.setState({ re_password })}/>
                         </View>
                         <View style = {mainStyle.email}>
                             <Text style = {mainStyle.titleInput}>Email của bạn</Text>
-                            <TextInput style = {mainStyle.input100Percents} placeholder="Nhập Email"/>
+                            <TextInput style = {mainStyle.input100Percents} placeholder="Nhập Email" keyboardType='email-address'
+                                value={this.state.email}
+                                returnKeyType="next"
+                                ref={(input) => { this.regEmail = input; }}
+                                onSubmitEditing={() =>this.regFirstName.focus()}
+                                onChangeText={(email) => this.setState({ email })}/>
                         </View>
                         <View style = {mainStyle.leftAndRight}>
                             <View style = {mainStyle.left}>
                                 <Text style = {mainStyle.titleInput}>Họ</Text>
-                                <TextInput style = {mainStyle.input100Percents} placeholder="Họ"/>
+                                <TextInput style = {mainStyle.input100Percents} placeholder="Họ"
+                                    value={this.state.first_name}
+                                    returnKeyType="next"
+                                    ref={(input) => { this.regFirstName = input; }}
+                                    onSubmitEditing={() =>this.regLastName.focus()}
+                                    onChangeText={(first_name) => this.setState({ first_name })}/>
                             </View>
                             <View style = {mainStyle.right}>
                                 <Text style = {mainStyle.titleInput}>Tên</Text>
-                                <TextInput style = {mainStyle.input100Percents} placeholder="Tên"/>
+                                <TextInput style = {mainStyle.input100Percents} placeholder="Tên"
+                                    value={this.state.last_name}
+                                    returnKeyType="next"
+                                    ref={(input) => { this.regLastName = input; }}
+                                    onSubmitEditing={() =>this.regAddress.focus()}
+                                    onChangeText={(last_name) => this.setState({ last_name })}/>
                             </View>
                         </View>
                         <View style = {mainStyle.leftAndRight}>
                             <View style = {mainStyle.left}>
                                 <Text style = {mainStyle.titleInput}>Sinh Ngày</Text>
-                                <TextInput style = {mainStyle.input100Percents} placeholder="Sinh ngày"/>
+                                <TextInput style = {mainStyle.input100Percents} placeholder="Sinh ngày"
+                                    value={this.state.birthday}
+                                    onFocus={() => this.showDateTimePicker()}/>
                             </View>
                             <View style = {mainStyle.right}>
                                 <Text style = {mainStyle.titleInput}>Giới Tính</Text>
                                 <TextInput style = {mainStyle.input100Percents} placeholder="Giới tính"/>
+                                <Picker
+                                    selectedValue={this.state.gender}
+                                    style={mainStyle.input100Percents}
+                                    onValueChange={(itemValue, itemIndex) =>
+                                        this.setState({gender: itemValue})
+                                    }>
+                                    <Picker.Item label="Nam" value="male" />
+                                    <Picker.Item label="Nữ" value="female" />
+                                </Picker>
                             </View>
                         </View>
                         <View style = {mainStyle.address}>
                             <Text style = {mainStyle.titleInput}>Địa Chỉ</Text>
-                            <TextInput style = {mainStyle.input100Percents} placeholder="Nhập vào địa chỉ"/>
+                            <TextInput style = {mainStyle.input100Percents} placeholder="Nhập vào địa chỉ"
+                                value={this.state.address}
+                                returnKeyType="done"
+                                ref={(input) => { this.regAddress = input; }}
+                                onSubmitEditing={() =>this.onSubmit()}
+                                onChangeText={(address) => this.setState({ address })}/>
                         </View>
                     </View>
                     <View style = {mainStyle.footer}>
-                        <TouchableOpacity style = {mainStyle.buttonDangKy} >
-                            <Text style ={mainStyle.textButtonDangKy}>Đăng Ký</Text>
+                        <TouchableOpacity style = {mainStyle.buttonDangKy} 
+                            onPress={() =>this.onSubmit()}>
+                            <Text style ={mainStyle.textButtonDangKy}>{this.state.buttonText}</Text>
                         </TouchableOpacity>
                     </View>
+                    <DateTimePicker
+                        isVisible={this.state.isDateTimePickerVisible}
+                        onConfirm={this.handleDatePicked}
+                        onCancel={this.hideDateTimePicker}
+                        cancelTextIOS={'Đóng'}
+                        confirmTextIOS={'Xác nhận'}
+                        date = {this.state.date}
+                        />
                 </ScrollView>
             </KeyboardAvoidingView>
 		);
