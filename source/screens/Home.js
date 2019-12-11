@@ -18,7 +18,11 @@ export default class Home extends Component{
     }
 	
 	gotoRegister(){
-		this.props.navigation.navigate('QuestRegisterScreen', {version: this.state.version});
+		this.props.navigation.navigate('RegisterScreen', {version: this.state.version});
+	}
+
+	gotoLogin(){
+		this.props.navigation.navigate('LoginScreen', {version: this.state.version});
 	}
 
 	render() {
@@ -47,7 +51,7 @@ export default class Home extends Component{
 				<View style = {mainStyle.content_2}>
 					<View style = {mainStyle.content_2a}>
 						<TouchableOpacity style = {mainStyle.buttonSignIn}
-							onPress={()=>this.gotoRegister()}>
+							onPress={()=>this.gotoLogin()}>
 							<Text style = {mainStyle.textButtonSignIn}>ĐĂNG NHẬP NGAY</Text>
 						</TouchableOpacity>
 					</View>

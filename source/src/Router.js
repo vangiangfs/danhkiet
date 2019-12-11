@@ -6,6 +6,8 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import Home from './../screens/Home';
 import Menu from './../screens/Menu';
 import Register from './../screens/member/Register';
+import RegisterSuccess from './../screens/member/RegisterSuccess';
+import Login from './../screens/member/Login';
 
 export const DKStack = createStackNavigator({
     HomeScreen: {
@@ -14,6 +16,12 @@ export const DKStack = createStackNavigator({
     RegisterScreen: {
         screen: Register
     },
+    RegisterSuccessScreen: {
+        screen: RegisterSuccess
+    },
+    LoginScreen: {
+        screen: Login
+    }
 }, {
     headerMode: 'none',
     initialRouteName: 'HomeScreen',

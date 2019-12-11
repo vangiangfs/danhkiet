@@ -6,18 +6,20 @@ import {
 	KeyboardAvoidingView,
 	Image,
 	TouchableOpacity,
-	Picker,
     TextInput,
     ScrollView,
     Alert,
     Dimensions
 } from 'react-native';
 
+import { Picker} from "native-base";
+
 import mainStyle from '../../src/styles/mainStyle';
 
 import DateTimePicker from "react-native-modal-datetime-picker";
 
 import {submitRegister} from '../../src/api/apiMember';
+import {getCities, getDistricts} from '../../src/api/apiGlobal';
 
 export default class Register extends Component{
 
@@ -36,16 +38,35 @@ export default class Register extends Component{
             buttonText: 'Đăng Ký',
             date: new Date(),
             isDateTimePickerVisible: false,
-            type: 'guest'
+            version: 'guest',
+            cities: [],
+            city_id: 0,
+            districts: [],
+            district_id: 0,
+            service_charge: '',
+            machine_type: '',
+            experience: '',
+            work_done: ''
 		}
     }
 
     componentDidMount() {
-        
+        const version = this.props.navigation.state.params.version;
+        this.setState({version});
+
+        getCities()
+        .then(resJSON => {
+			const {list, error} = resJSON;
+			if(error == false){	
+				this.setState({
+					cities: list 
+				});
+			}
+        });
     }
 
     onSubmit(){
-        var { type, mobile, password, re_password, email, first_name, last_name, birthday, gender, address } = this.state;
+        var { version, mobile, password, re_password, email, first_name, last_name, birthday, gender, city_id, district_id, address, service_charge, machine_type, experience, work_done } = this.state;
 
         if(mobile == ''){
             Alert.alert('Thông báo', 'Bạn vui lòng nhập số điện thoại.');
@@ -79,22 +100,22 @@ export default class Register extends Component{
 
         this.setState({ buttonText: 'Đang xử lý...'});
 
-        submitRegister( type, mobile, password, email, first_name, last_name, birthday, gender, address )
+        submitRegister( version, mobile, password, email, first_name, last_name, birthday, gender, city_id, district_id, address, service_charge, machine_type, experience, work_done )
         .then(responseJson => {
         
 			if(responseJson.error == '0'){
                 Alert.alert('Thông báo', responseJson.message,[
-                  {text: 'OK', onPress: () => this.props.navigation.navigate('LoginScreen', {draft: responseJson.draft})},
+                  {text: 'OK', onPress: () => this.props.navigation.navigate('RegisterSuccessScreen', {version: this.state.version})},
                 ]);
             }else {
                 Alert.alert('Thông báo', responseJson.message);
-                this.setState({ buttonText: 'Registration'});
+                this.setState({ buttonText: 'Đăng Ký'});
             }
             
         }).catch(err => {
             Alert.alert('Thông báo!', error.message);
 
-            this.setState({ buttonText: 'Registration'});
+            this.setState({ buttonText: 'Đăng Ký'});
         });
     }
 
@@ -119,6 +140,19 @@ export default class Register extends Component{
 		this.hideDateTimePicker();
 	};
 
+    setCityChanged(city_id){
+        this.setState({city_id});
+
+        getDistricts(city_id)
+        .then(resJSON => {
+			const {list, error} = resJSON;
+			if(error == false){	
+				this.setState({
+					districts: list 
+				});
+			}
+        });
+    }
 
 	render() {
 		return (
@@ -133,7 +167,7 @@ export default class Register extends Component{
                             </TouchableOpacity>
                         </View>
                         <View style = {mainStyle.containTextHeader}>
-                            <Text style = {mainStyle.textHeader}>Tạo tài khoản khách hàng</Text>
+                            <Text style = {mainStyle.textHeader}>{this.state.version=='guest'?'Tạo tài khoản khách hàng':'Tạo tài khoản kỹ thuật'}</Text>
                         </View>
                         <View>
                             <Image source = {require('../../assets/iconProfile12.png')} 
@@ -216,18 +250,39 @@ export default class Register extends Component{
                                 </Picker>
                             </View>
                         </View>
+                        {this.state.version=='technical'?
                         <View style = {mainStyle.leftAndRight}>
                             <View style = {mainStyle.left}>
                                 <Text style = {mainStyle.titleInput}>Tỉnh/Thành phố</Text>
                                 <View>
-                                    <TextInput style = {mainStyle.input100Percents} placeholder="Tỉnh/Thành phố"></TextInput>
+                                <Picker
+                                    mode="dropdown"
+                                    style={mainStyle.filterPicker}
+                                    selectedValue={this.state.city_id}
+                                    onValueChange={(city_id) => this.setCityChanged(city_id)}
+                                    >
+                                    <Picker.Item label="Tỉnh/Thành phố" value="0" />
+                                    {this.state.cities.map((e)=>(
+                                        <Picker.Item key={e.id} label={e.name} value={e.id} />
+                                    ))}
+                                </Picker>
                                 </View>
                             </View>
                             <View style = {mainStyle.right}>
                                 <Text style = {mainStyle.titleInput}>Quận/Huyện</Text>
-                                <TextInput style = {mainStyle.input100Percents} placeholder="Quận Huyện"/>
+                                <Picker
+                                    mode="dropdown"
+                                    style={mainStyle.filterPicker}
+                                    selectedValue={this.state.district_id}
+                                    onValueChange={(district_id) => this.setState({district_id})}
+                                    >
+                                    <Picker.Item label="Quận/Huyện" value="0" />
+                                    {this.state.districts.map((e)=>(
+                                        <Picker.Item key={e.id} label={e.name} value={e.id} />
+                                    ))}
+                                </Picker>
                             </View>
-                        </View>
+                        </View>:null}
                         <View style = {mainStyle.address}>
                             <Text style = {mainStyle.titleInput}>Địa Chỉ</Text>
                             <TextInput style = {mainStyle.input100Percents} placeholder="Nhập vào địa chỉ"
@@ -237,37 +292,47 @@ export default class Register extends Component{
                                 onSubmitEditing={() =>this.onSubmit()}
                                 onChangeText={(address) => this.setState({ address })}/>
                         </View>
-                        <View style = {mainStyle.leftAndRight}>
-                            <View style = {mainStyle.left}>
-                                <Text style = {mainStyle.titleInput}>Phí Dịch Vụ</Text>
-                                <View>
-                                    <TextInput style = {mainStyle.input100Percents} placeholder="Phí Dịch Vụ">
-                                    </TextInput>
+                        {this.state.version=='technical'?<View>
+                            <View style = {mainStyle.leftAndRight}>
+                                <View style = {mainStyle.left}>
+                                    <Text style = {mainStyle.titleInput}>Phí Dịch Vụ</Text>
+                                    <View>
+                                        <TextInput style = {mainStyle.input100Percents} placeholder="Phí Dịch Vụ"
+                                            value={this.state.service_charge}
+                                            onChangeText={(service_charge) => this.setState({ service_charge })}>
+                                        </TextInput>
+                                    </View>
+                                </View>
+                                <View style = {mainStyle.right}>
+                                    <Text></Text>
+                                    <TextInput style = {mainStyle.input100Percents} placeholder="Loại Máy Sử Dụng"
+                                        value={this.state.machine_type}
+                                        onChangeText={(machine_type) => this.setState({ machine_type })}/>
                                 </View>
                             </View>
-                            <View style = {mainStyle.right}>
-                                <Text></Text>
-                                <TextInput style = {mainStyle.input100Percents} placeholder="Loại Máy Sử Dụng"/>
+                            {/* <View style = {mainStyle.leftAndRight}>
+                                <View style = {mainStyle.left}>
+                                    <Text style = {mainStyle.titleInput}>Bằng cấp, chứng chỉ</Text>
+                                    <Text style = {{color:'red'}}>Thiếu chỗ thêm hình ảnh</Text>
+                                </View>
+                                <View style = {mainStyle.right}>
+                                    <Text style = {mainStyle.titleInput}>Giấy chứng nhận</Text>
+                                    <Text style = {{color:'red'}}>Thiếu chỗ thêm hình ảnh</Text>
+                                </View>
+                            </View> */}
+                            <View style = {mainStyle.address}>
+                                <Text style = {mainStyle.titleInput}>Kinh nghiệm</Text>
+                                <TextInput style = {mainStyle.input100Percents} placeholder="Kinh nghiệm"
+                                    value={this.state.experience}
+                                    onChangeText={(experience) => this.setState({ experience })}/>
                             </View>
-                        </View>
-                        <View style = {mainStyle.leftAndRight}>
-                            <View style = {mainStyle.left}>
-                                <Text style = {mainStyle.titleInput}>Bằng cấp, chứng chỉ</Text>
-                                <Text style = {{color:'red'}}>Thiếu chỗ thêm hình ảnh</Text>
+                            <View style = {mainStyle.address}>
+                                <Text style = {mainStyle.titleInput}>Công việc đã làm</Text>
+                                <TextInput style = {mainStyle.input100Percents} placeholder="Công việc đã làm"
+                                    value={this.state.work_done}
+                                    onChangeText={(work_done) => this.setState({ work_done })}/>
                             </View>
-                            <View style = {mainStyle.right}>
-                                <Text style = {mainStyle.titleInput}>Giấy chứng nhận</Text>
-                                <Text style = {{color:'red'}}>Thiếu chỗ thêm hình ảnh</Text>
-                            </View>
-                        </View>
-                        <View style = {mainStyle.address}>
-                            <Text style = {mainStyle.titleInput}>Kinh nghiệm</Text>
-                            <TextInput style = {mainStyle.input100Percents} placeholder="Kinh nghiệm"/>
-                        </View>
-                        <View style = {mainStyle.address}>
-                            <Text style = {mainStyle.titleInput}>Công việc đã làm</Text>
-                            <TextInput style = {mainStyle.input100Percents} placeholder="Công việc đã làm"/>
-                        </View>
+                        </View>:null}
                     </View>
                     <View style = {mainStyle.footer}>
                         <TouchableOpacity style = {mainStyle.buttonDangKy} 

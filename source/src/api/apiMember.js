@@ -1,8 +1,8 @@
 import global from './global';
 
-export function submitRegister( type, mobile, password, email, first_name, last_name, birthday, gender, address ) {
+export function submitRegister( version, mobile, password, email, first_name, last_name, birthday, gender, city_id, district_id, address, service_charge, machine_type, experience, work_done ) {
     let url;
-    url = global.BASE_URL+`/do_register.api?type=${type}&mobile=${mobile}&password=${password}&email=${email}&first_name=${first_name}&last_name=${last_name}&last_name=${last_name}&birthday=${birthday}&gender=${gender}&address=${address}`;
+    url = global.BASE_URL+`/do_register.api?version=${version}&mobile=${mobile}&password=${password}&email=${email}&first_name=${first_name}&last_name=${last_name}&last_name=${last_name}&birthday=${birthday}&gender=${gender}&city_id=${city_id}&district_id=${district_id}&address=${address}&service_charge=${service_charge}&machine_type=${machine_type}&experience=${experience}&work_done=${work_done}`;
     console.log(url);
     return fetch(url)
     .then(res => res.json());

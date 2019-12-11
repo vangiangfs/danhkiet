@@ -21,6 +21,7 @@ class AjaxControllersAjax extends FSControllers{
         $data['gender'] = FSInput::get('gender', '', 'str');
         $data['birthday'] = FSInput::get('birthday', '', 'str');
         $data['address'] = FSInput::get('address', '', 'str');
+        $data['version'] = FSInput::get('version', 'guest', 'str');
         $data['created_time'] = date('Y-m-d H:i:s');
         $data['published'] = 1;
         if ($user->checkExitsEmail($data['email'])) {
@@ -65,6 +66,54 @@ class AjaxControllersAjax extends FSControllers{
         } else {
             $json['message'] = 'Tên đăng nhập hoặc mật khẩu không đúng.';
         }
+        json_encode:
+        echo json_encode($json);
+    }
+
+    function get_cities(){
+        ob_start();
+        $json = array(
+            'error' => true,
+            'list' => array(),
+        );
+
+        $list = $this->model->get_cities();
+        if($list){
+            $json['error'] = false;
+            
+            foreach($list as $item){
+                $json['list'][] = array(
+                    'id' => $item->id,
+                    'name' => $item->name,
+                );
+            }
+        }
+
+        ob_end_clean();
+        json_encode:
+        echo json_encode($json);
+    }
+
+    function get_districts(){
+        ob_start();
+        $json = array(
+            'error' => true,
+            'list' => array(),
+        );
+        $city_id = FSInput::get('city_id');
+        $list = $this->model->get_districts($city_id);
+        if($list){
+            $json['error'] = false;
+            
+            foreach($list as $item){
+                $json['list'][] = array(
+                    'id' => $item->id,
+                    'name' => $item->name,
+                );
+            }
+        }
+
+        ob_end_clean();
         json_encode:
         echo json_encode($json);
     }
