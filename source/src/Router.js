@@ -5,18 +5,14 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 
 import Home from './../screens/Home';
 import Menu from './../screens/Menu';
-import QuestRegister from './../screens/member/QuestRegister';
-import TechnicalRegister from './../screens/member/TechnicalRegister';
+import Register from './../screens/member/Register';
 
 export const DKStack = createStackNavigator({
     HomeScreen: {
         screen: Home
     },
-    QuestRegisterScreen: {
-        screen: QuestRegister
-    },
-    TechnicalRegisterScreen: {
-        screen: TechnicalRegister
+    RegisterScreen: {
+        screen: Register
     },
 }, {
     headerMode: 'none',

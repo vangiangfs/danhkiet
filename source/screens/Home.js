@@ -18,10 +18,7 @@ export default class Home extends Component{
     }
 	
 	gotoRegister(){
-		if(this.state.version == 'guest')
-			this.props.navigation.navigate('QuestRegisterScreen');
-		else
-			this.props.navigation.navigate('TechnicalRegisterScreen');
+		this.props.navigation.navigate('QuestRegisterScreen', {version: this.state.version});
 	}
 
 	render() {

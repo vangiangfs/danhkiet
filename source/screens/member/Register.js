@@ -19,7 +19,7 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 
 import {submitRegister} from '../../src/api/apiMember';
 
-export default class QuestRegister extends Component{
+export default class Register extends Component{
 
     constructor(props) {
         super(props);
@@ -205,7 +205,6 @@ export default class QuestRegister extends Component{
                             </View>
                             <View style = {mainStyle.right}>
                                 <Text style = {mainStyle.titleInput}>Giới Tính</Text>
-                                <TextInput style = {mainStyle.input100Percents} placeholder="Giới tính"/>
                                 <Picker
                                     selectedValue={this.state.gender}
                                     style={mainStyle.input100Percents}
@@ -217,6 +216,18 @@ export default class QuestRegister extends Component{
                                 </Picker>
                             </View>
                         </View>
+                        <View style = {mainStyle.leftAndRight}>
+                            <View style = {mainStyle.left}>
+                                <Text style = {mainStyle.titleInput}>Tỉnh/Thành phố</Text>
+                                <View>
+                                    <TextInput style = {mainStyle.input100Percents} placeholder="Tỉnh/Thành phố"></TextInput>
+                                </View>
+                            </View>
+                            <View style = {mainStyle.right}>
+                                <Text style = {mainStyle.titleInput}>Quận/Huyện</Text>
+                                <TextInput style = {mainStyle.input100Percents} placeholder="Quận Huyện"/>
+                            </View>
+                        </View>
                         <View style = {mainStyle.address}>
                             <Text style = {mainStyle.titleInput}>Địa Chỉ</Text>
                             <TextInput style = {mainStyle.input100Percents} placeholder="Nhập vào địa chỉ"
@@ -225,6 +236,37 @@ export default class QuestRegister extends Component{
                                 ref={(input) => { this.regAddress = input; }}
                                 onSubmitEditing={() =>this.onSubmit()}
                                 onChangeText={(address) => this.setState({ address })}/>
+                        </View>
+                        <View style = {mainStyle.leftAndRight}>
+                            <View style = {mainStyle.left}>
+                                <Text style = {mainStyle.titleInput}>Phí Dịch Vụ</Text>
+                                <View>
+                                    <TextInput style = {mainStyle.input100Percents} placeholder="Phí Dịch Vụ">
+                                    </TextInput>
+                                </View>
+                            </View>
+                            <View style = {mainStyle.right}>
+                                <Text></Text>
+                                <TextInput style = {mainStyle.input100Percents} placeholder="Loại Máy Sử Dụng"/>
+                            </View>
+                        </View>
+                        <View style = {mainStyle.leftAndRight}>
+                            <View style = {mainStyle.left}>
+                                <Text style = {mainStyle.titleInput}>Bằng cấp, chứng chỉ</Text>
+                                <Text style = {{color:'red'}}>Thiếu chỗ thêm hình ảnh</Text>
+                            </View>
+                            <View style = {mainStyle.right}>
+                                <Text style = {mainStyle.titleInput}>Giấy chứng nhận</Text>
+                                <Text style = {{color:'red'}}>Thiếu chỗ thêm hình ảnh</Text>
+                            </View>
+                        </View>
+                        <View style = {mainStyle.address}>
+                            <Text style = {mainStyle.titleInput}>Kinh nghiệm</Text>
+                            <TextInput style = {mainStyle.input100Percents} placeholder="Kinh nghiệm"/>
+                        </View>
+                        <View style = {mainStyle.address}>
+                            <Text style = {mainStyle.titleInput}>Công việc đã làm</Text>
+                            <TextInput style = {mainStyle.input100Percents} placeholder="Công việc đã làm"/>
                         </View>
                     </View>
                     <View style = {mainStyle.footer}>
