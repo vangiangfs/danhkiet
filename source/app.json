@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "DanhKiet",
-    "slug": "danhkiet",
+    "slug": "danhkiet_app",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -24,7 +24,20 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.danhkiet.app",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This application uses the camera to take photos of people when taking attendance",
+        "NSPhotoLibraryAddUsageDescription": "The application uses images to make avatar images",
+        "NSPhotoLibraryUsageDescription": "The application uses images to make avatar images",
+        "NSLocationWhenInUseUsageDescription": "Allow application experiences to use your location"
+      }
+    },
+    "android": {
+      "package": "com.danhkiet.app",
+      "versionCode": 10,
+      "permissions": ["CAMERA", "WRITE_EXTERNAL_STORAGE", "READ_EXTERNAL_STORAGE", "ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"]
+  }
   }
 }

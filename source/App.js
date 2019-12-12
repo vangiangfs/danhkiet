@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { DKMenu } from './src/Router';
+import { DKStack } from './src/Router';
 import { createAppContainer} from 'react-navigation';
 
-const AppContainer = createAppContainer(DKMenu);
+const AppContainer = createAppContainer(DKStack);
 
 export default class App extends React.Component {
     render() {

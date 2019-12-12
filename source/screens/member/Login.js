@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import {View, Text, ImageBackground, Image, TouchableOpacity, Alert, TextInput, Dimensions}from 'react-native';
 
-import { Notifications, Constants } from 'expo';
+import { Notifications } from 'expo';
+
+import Constants from 'expo-constants';
+import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
 
 import mainStyle from '../../src/styles/mainStyle';
 
 import {saveStorage} from '../../src/api/storage';
+import {submitLogin} from '../../src/api/apiMember';
 
 export default class Login extends Component{
     constructor(props) {
@@ -16,7 +21,10 @@ export default class Login extends Component{
             username: '',
             password: '',
             buttonText: 'ĐĂNG NHẬP',
-            token: ''
+            token: '',
+            longitude: 105.850525,
+            latitude: 21.032711,
+            errorMessage: ''
 		}
     }
 
@@ -34,7 +42,27 @@ export default class Login extends Component{
             this.setState({token});
             
         } catch (e) {
-            console.log('Error');
+            console.log('Error', e);
+        }
+
+        try {
+            let { status } = await Permissions.askAsync(Permissions.LOCATION);
+            if (status !== 'granted') {
+                console.log('Error', 'Permission to access location was denied');
+
+                this.setState({
+                    errorMessage: 'Permission to access location was denied',
+                });
+            }
+            let location = await Location.getCurrentPositionAsync({});
+            this.setState({ longitude: location.coords.longitude, latitude: location.coords.latitude });
+
+            console.log('location', location);
+
+            console.log('state', this.state);
+
+        } catch (e) {
+            console.log('Error', e);
         }
     }
 
@@ -48,7 +76,7 @@ export default class Login extends Component{
     }
 
     onSubmit(){
-        var {username, password, token } = this.state;
+        var {username, password, token, version, latitude, longitude } = this.state;
 
         if(username == ''){
             Alert.alert('Thông báo', 'Bạn vui lòng nhập email.');
@@ -62,12 +90,12 @@ export default class Login extends Component{
 
         this.setState({ buttonText: 'Đang xử lý...'});
 
-        submitLogin(username, password, token)
+        submitLogin(username, password, token, version, latitude, longitude )
         .then((responseJson) => {
             if(responseJson.error == '0'){
                 saveStorage('user', JSON.stringify(responseJson.user));
                 // global.onSignIn();
-                this.props.navigation.navigate('HomeScreen');
+                this.props.navigation.navigate('SearchScreen');
             }else{
                 Alert.alert('Thông báo', responseJson.message);
             }
@@ -88,12 +116,16 @@ export default class Login extends Component{
                     <View style = {mainStyle.content_1c_login}>
                         <View style = {mainStyle.inputTaiKhoan}>
                             <Image source={require('../../assets/iconLogin1.png')} style = {mainStyle.imageTextInput}/>
-                            <TextInput style={mainStyle.textInputLoginClient} placeholder="Tài khoản/SĐT"
+                            <TextInput style={mainStyle.textInputLoginClient} placeholder="Tài khoản/SĐT" keyboardType='phone-pad'
+                                returnKeyType="next"
+                                onSubmitEditing={() =>this.logPassword.focus()}
                                 onChangeText={(username) => this.setState({username})} />
                         </View>
                         <View style = {mainStyle.inputMatKhau}>
                             <Image source={require('../../assets/iconLogin2.png')} style = {mainStyle.imageTextInput}/>
                             <TextInput style={mainStyle.textInputLoginClient} secureTextEntry = {true} placeholder="Mật Khẩu"
+                                returnKeyType="done"
+                                ref={(input) => { this.logPassword = input; }}
                                 onChangeText={(password) => this.setState({password})}
                                 onSubmitEditing={() =>this.onSubmit()}/>
                         </View>

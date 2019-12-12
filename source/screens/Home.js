@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {View, Text, ImageBackground, Image, TouchableOpacity} from 'react-native';
 
 import mainStyle from '../src/styles/Style';
+import {getStorage} from '../src/api/storage';
 
 export default class Home extends Component{
 	static navigationOptions = ({ navigation }) => ({
@@ -14,7 +15,13 @@ export default class Home extends Component{
 
         this.state = {
             version: 'guest', // guest, technical
-        }
+		}
+		
+		getStorage('user')
+        .then(user => { 
+            if(user != '')
+				this.props.navigation.navigate('SearchScreen');
+        });
     }
 	
 	gotoRegister(){

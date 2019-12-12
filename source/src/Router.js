@@ -8,6 +8,7 @@ import Menu from './../screens/Menu';
 import Register from './../screens/member/Register';
 import RegisterSuccess from './../screens/member/RegisterSuccess';
 import Login from './../screens/member/Login';
+import Search from './../screens/Search';
 
 export const DKStack = createStackNavigator({
     HomeScreen: {
@@ -21,6 +22,9 @@ export const DKStack = createStackNavigator({
     },
     LoginScreen: {
         screen: Login
+    },
+    SearchScreen: {
+        screen: Search
     }
 }, {
     headerMode: 'none',

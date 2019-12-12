@@ -49,20 +49,30 @@ class AjaxControllersAjax extends FSControllers{
 
         $email = FSInput::get('email');
         $password = FSInput::get('password');
-        $loged = $user->login($email, $password);
+        $version = FSInput::get('version');
+        $longitude = FSInput::get('longitude');
+        $latitude = FSInput::get('latitude');
+        $loged = $user->login($email, $password, $version);
         if ($loged) {
             $json['error'] = 0;
             $json['message'] = 'Bạn đã đăng nhập thành công.';
-            $json['token'] = $user->userInfo->id;
-
+            $json['version'] = $user->userInfo->version;
             $json['user'] = array(
                 'id' => $user->userInfo->id,
                 'email' => $user->userInfo->email,
-                'poster_mobile' => $user->userInfo->poster_mobile,
-                'poster_address' => $user->userInfo->poster_address,
-                'poster_name' => $user->userInfo->poster_name,
+                'mobile' => $user->userInfo->mobile,
+                'version' => $user->userInfo->version,
+                'first_name' => $user->userInfo->first_name,
+                'last_name' => $user->userInfo->last_name,
+                'longitude' => $longitude,
+                'latitude' => $latitude
             );
 
+            $user->updateUser(array(
+                'longitude' => $longitude,
+                'latitude' => $latitude
+            ), $user->userInfo->id);
+            
         } else {
             $json['message'] = 'Tên đăng nhập hoặc mật khẩu không đúng.';
         }

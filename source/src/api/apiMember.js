@@ -8,9 +8,9 @@ export function submitRegister( version, mobile, password, email, first_name, la
     .then(res => res.json());
 };
 
-export function submitLogin (username, password, token) {
+export function submitLogin (username, password, token, version, latitude, longitude) {
     let url;
-    url = global.BASE_URL+`/do_login.api?username=${username}&password=${password}&token=${token}`;
+    url = global.BASE_URL+`/do_login.api?username=${username}&password=${password}&token=${token}&version=${version}&latitude=${latitude}&longitude=${longitude}`;
     console.log(url);
     return fetch(url)
     .then(res => res.json());

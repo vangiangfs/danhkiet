@@ -148,7 +148,7 @@ class FSUser{
     * @param bool $loadUser
     * @return bool
     */
-    function login($uname, $password, $remember = false, $loadUser = true){
+    function login($uname, $password, $version, $remember = false, $loadUser = true){
         global $db;
     	$uname    = $this->escape($uname);
     	$password = $originalPassword = $this->escape($password);
@@ -161,7 +161,7 @@ class FSUser{
     	  	$password = "'$password'";
     	}
     	$db->query("SELECT * FROM `".$this->tbStore."` 
-    	WHERE (`email` = '$uname' OR `username` = '$uname') AND `password` = $password LIMIT 1");
+    	WHERE (`email` = '$uname' OR `username` = '$uname' OR `mobile` = '$uname') AND `password` = $password AND `version`='$version' LIMIT 1");
         $user = $db->getObject(); 
     	if ( !$user )
     		return false;
