@@ -80,6 +80,30 @@ class AjaxControllersAjax extends FSControllers{
         echo json_encode($json);
     }
 
+    function get_countries(){
+        ob_start();
+        $json = array(
+            'error' => true,
+            'list' => array(),
+        );
+
+        $list = $this->model->get_countries();
+        if($list){
+            $json['error'] = false;
+            
+            foreach($list as $item){
+                $json['list'][] = array(
+                    'id' => $item->id,
+                    'name' => $item->name,
+                );
+            }
+        }
+
+        ob_end_clean();
+        json_encode:
+        echo json_encode($json);
+    }
+
     function get_cities(){
         ob_start();
         $json = array(
@@ -112,6 +136,30 @@ class AjaxControllersAjax extends FSControllers{
         );
         $city_id = FSInput::get('city_id');
         $list = $this->model->get_districts($city_id);
+        if($list){
+            $json['error'] = false;
+            
+            foreach($list as $item){
+                $json['list'][] = array(
+                    'id' => $item->id,
+                    'name' => $item->name,
+                );
+            }
+        }
+
+        ob_end_clean();
+        json_encode:
+        echo json_encode($json);
+    }
+
+    function get_wards(){
+        ob_start();
+        $json = array(
+            'error' => true,
+            'list' => array(),
+        );
+        $district_id = FSInput::get('district_id');
+        $list = $this->model->get_wards($district_id);
         if($list){
             $json['error'] = false;
             

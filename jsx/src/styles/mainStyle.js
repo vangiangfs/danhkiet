@@ -28,7 +28,7 @@ export default StyleSheet.create({
         height:150 * standarHeight / height,
         resizeMode:'contain'
     },
-    content_1:{
+    content_1:{     
         flex:5,
         flexDirection:'column',
         margin:margin,
@@ -448,7 +448,7 @@ export default StyleSheet.create({
     body4:{
         flex:7,
         flexDirection:'column',
-        backgroundColor:'#f5f5f5',
+        backgroundColor:'#f1f1f1',
     },
     content1_body4:{
         padding:0,
@@ -816,7 +816,90 @@ export default StyleSheet.create({
         borderRadius:5,
         shadowOffset:{  width: 10,  height: 10,  },
         shadowColor: 'black',
+    },
+    hinhThuc_bank1:{
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#ffffff',
+        margin:20,
+        padding:20,
+    },
+    hinhThuc_bank2:{
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    theTinDung:{
+        backgroundColor:'#ffffff',
+        margin:10,
+        padding:10,
+    },
+    ngayThang:{
+        height: 60 * standarHeight/height,flexDirection:'row', marginTop:10, marginBottom:10, justifyContent:'space-between',
+    },
+    ngay:{
+        flexDirection:'row', height:60* standarHeight/height, width:'49%', borderColor:'#999999', borderWidth:1, borderRadius :5,
+        paddingLeft:10, paddingRight:10,
+    },
+    inputTheTinDung:{
+        flexDirection:'row', width:'100%', height: 60 * standarHeight/height, borderColor:'#999999', borderWidth:1, borderRadius :5,
+        paddingLeft:10,paddingRight:10,
+    },
+    button1_TheTinDung:{
+        width:'100%', backgroundColor:'red', height: 60 * standarHeight/height, justifyContent:'center', borderRadius:5, marginTop:10
+    },
+    button2_TheTinDung:{
+        width:'100%', backgroundColor:'white', height: 60 * standarHeight/height, justifyContent:'center'
+    },
+    imageVisa:{
+        width:60* standarWidth/width,
+        height:50 * standarHeight/height,
+        resizeMode:'contain'
+    },
+    containImageVisa:{
+        marginTop:10,
+        marginRight:10,
+    },
+    imagefooter:{
+        width:'100%', height:'100%', resizeMode:'contain'
+    },
+    containImageFooter:{
+        width:'15%', height:'100%', marginLeft:5, marginRight:5,
+    },
+    row_1:{
+        width:'100%', height:(395 /1280) * height, flexDirection:'row'
+    },
+    row_2:{
+        width:'100%', height:(185 /1280) * height, flexDirection:'row'
+    },
+    row_3:{
+        width:'100%', height:(205 /1280) * height, flexDirection:'row'
+    },
+    row_4:{
+        width:'100%', height:(175 /1280) * height, flexDirection:'row'
+    },
+    row_5:{
+        width:'100%', height:(200 /1280) * height, flexDirection:'row'
+    },
+    row_6:{
+        width:'100%',
+        marginLeft:20
+    },
+    column_1:{
+        width:(285 /720) * width,height:'100%', 
+    },
+    column_2:{
+        width:(150 /720) * width,height:'100%',  alignItems:'center'
+    },
+    column_3:{
+        width:(285 /720) * width,height:'100%', 
+    },
+    avatar:{
+        width:(285 /720) * width,height:'100%',paddingLeft: 19 * standarWidth/width 
+    },
+    redColor:{
+        color:'red'
+    },
+    logoHome:{
+        justifyContent:'center'
     }
-
-    
 });

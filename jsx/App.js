@@ -37,6 +37,11 @@ import ChinhSuaThongTinTaiKhoanKyThuat from './screens/chinhSuaThongTinTaiKhoanK
 import ThongTinKyThuat_Goi from './screens/thongTinKyThuat_Goi';
 import ThongTinKyThuat_BatMay from './screens/thongTinKyThuat_BatMay';
 import GiaHanTaiKhoan from './screens/giaHanTaiKhoan';
+import HinhThucThanhToan_Bank from './screens/hinhThucThanhToan_Bank';
+import HinhThucThanhToan_TheTinDung from './screens/hinhThucThanhToan_TheTinDung';
+import HinhThucThanhToan_AtmChiTiet from './screens/hinhThucThanhToan_AtmChiTiet';
+import SauDangNhapKhachHang from './screens/sauDangNhapKhachHang';
+import SauDangNhapKyThuat from './screens/sauDangNhapKyThuat';
 
 export default class App extends Component{
 	render(){
@@ -67,7 +72,12 @@ export default class App extends Component{
 			//<ChinhSuaThongTinTaiKhoanKyThuat></ChinhSuaThongTinTaiKhoanKyThuat>
 			//<ThongTinKyThuat_Goi></ThongTinKyThuat_Goi>
 			//<ThongTinKyThuat_BatMay></ThongTinKyThuat_BatMay>
-			<GiaHanTaiKhoan></GiaHanTaiKhoan>
+			//<GiaHanTaiKhoan></GiaHanTaiKhoan>
+			//<HinhThucThanhToan_Bank></HinhThucThanhToan_Bank>
+			//<HinhThucThanhToan_TheTinDung></HinhThucThanhToan_TheTinDung>
+			//<HinhThucThanhToan_AtmChiTiet></HinhThucThanhToan_AtmChiTiet>
+			//<SauDangNhapKhachHang></SauDangNhapKhachHang>
+			<SauDangNhapKyThuat></SauDangNhapKyThuat>
 		);
 	}
 }

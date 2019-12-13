@@ -46,7 +46,8 @@ export default class Register extends Component{
             service_charge: '',
             machine_type: '',
             experience: '',
-            work_done: ''
+            work_done: '',
+            country_id: 66
 		}
     }
 
@@ -54,7 +55,7 @@ export default class Register extends Component{
         const version = this.props.navigation.state.params.version;
         this.setState({version});
 
-        getCities()
+        getCities(this.state.country_id)
         .then(resJSON => {
 			const {list, error} = resJSON;
 			if(error == false){	

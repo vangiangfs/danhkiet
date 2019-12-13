@@ -15,7 +15,7 @@ export default class HeaderBase extends Component{
         const { navigation, page, title } = this.props;
 
         return(
-            <View style = {[mainStyle.header4, mainStyle.headerBase]}>
+            <View style = {mainStyle.header4}>
                 <View style = {mainStyle.buttonBack2} >
                     <TouchableOpacity
                         onPress={()=>navigation.goBack()}>
