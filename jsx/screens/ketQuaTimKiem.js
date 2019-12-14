@@ -65,17 +65,17 @@ export default class KetQuaTimKiem extends Component {
                     <View style = {mainStyle.oneLine}>
                         <View style = {mainStyle.oneLine_left}>
                             <TouchableOpacity>
-                                <Image source = {require('../assets/avatar.png')} style = {{height:70 * standarHeight/height, width:70 * standarWidth / width , resizeMode:'cover'}}/>
+                                <Image source = {require('../assets/avatar.png')} style = {{height:70 * standarHeight/height, width:70 * standarWidth / width , resizeMode:'contain'}}/>
                             </TouchableOpacity>
                             <TouchableOpacity style = {{justifyContent:'center',alignItems:'center'}} onPress= { () => alert(item.name)}>
-                                <Text style = {{fontWeight:'bold',fontSize:textName,textAlign:'center',marginLeft:2}}>{item.name}</Text>
+                                <Text style = {{fontWeight:'bold',fontSize:14,textAlign:'center',marginLeft:2}}>{item.name}</Text>
                             </TouchableOpacity>    
                                 
                         </View>
                         <View style = {mainStyle.oneLine_right}>
                             <View style = {mainStyle.khoangcach} >
-                                <Text style = {{textAlign:'center',color:'#999999',fontSize:10}}>Khoảng cách</Text>
-                                <Text style = {{textAlign:'center',fontSize:10}}>{item.km}km</Text>
+                                <Text style = {{textAlign:'center',color:'#999999',fontSize:12}}>Khoảng cách</Text>
+                                <Text style = {{textAlign:'center',fontSize:12}}>{item.km}km</Text>
                             </View>
                             <View style = {mainStyle.iconCall}>
                                 <TouchableOpacity onPress= { () => alert('Call')}>

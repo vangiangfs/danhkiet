@@ -54,7 +54,7 @@ export default class App extends Component{
 			//<TimKiem></TimKiem>
 			//<DieuKhoan></DieuKhoan>
 			//<TimKiem1></TimKiem1>
-			//<KetQuaTimKiem></KetQuaTimKiem>
+			<KetQuaTimKiem></KetQuaTimKiem>
 			//<DanhSachDaGoi></DanhSachDaGoi>
 			//<DoiMatKhau></DoiMatKhau>
 			//<DangKyKhachHangThanhCong></DangKyKhachHangThanhCong>
@@ -77,7 +77,7 @@ export default class App extends Component{
 			//<HinhThucThanhToan_TheTinDung></HinhThucThanhToan_TheTinDung>
 			//<HinhThucThanhToan_AtmChiTiet></HinhThucThanhToan_AtmChiTiet>
 			//<SauDangNhapKhachHang></SauDangNhapKhachHang>
-			<SauDangNhapKyThuat></SauDangNhapKyThuat>
+			//<SauDangNhapKyThuat></SauDangNhapKyThuat>
 		);
 	}
 }

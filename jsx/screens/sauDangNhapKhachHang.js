@@ -20,108 +20,73 @@ export default class SauDangNhapKhachHang extends Component {
 
     render(){
         return(
-           <ImageBackground style = {{flex:1}} source = {require('../assets/backgroundImage5.png')} style = {{width:'100%', height:'100%',resizeMode:'cover'}}>
-               <View style = {mainStyle.row_1}>
-                   <View style = {mainStyle.column_1}>
-                   <TouchableOpacity  style = {{width:'80%', height:'100%',position:'absolute',justifyContent:'flex-end', marginLeft:22}}>
-                           <View style = {{alignItems:'center'}}>
-                                <View>
-                                    <Image source = {require('../assets/sauDangNhap1.png')} style = {{width: 70 * standarWidth/ width , height:70 * standarHeight/height, resizeMode:'contain'}}></Image>
-                                </View>
-                                <Text style = {mainStyle.redColor}>Danh sách</Text>
-                                <Text style = {mainStyle.redColor}>đã gọi</Text>
-                           </View>
-                       </TouchableOpacity>
-                   </View>
-                   <View style = {mainStyle.column_2}></View>
-                   <View style = {mainStyle.logoHome}>
+            <View style={{flex:1, backgroundColor: '#f42535'}}>
+                <View style = {mainStyle.logoHome}>
                        <TouchableOpacity style = {{justifyContent:'center'}}>
                             <Image source = {require('../assets/logo.png')} style = {mainStyle.logo_home}></Image>
                        </TouchableOpacity>
-                   </View>
-               </View>
-               <View style = {mainStyle.row_2}>
-                    <View style = {mainStyle.column_1}></View>
-                   <View style = {mainStyle.column_2}>
-                    <TouchableOpacity style = {{alignItems:'center'}}>
-                            <View>
-                                    <Image source = {require('../assets/search.png')} style = {{width: 60* standarWidth/ width , height:70 * standarHeight/height, resizeMode:'contain'}}></Image>
-                            </View>
-                            <Text style = {{textAlign:'center',color:'red'}}>Tìm kiếm dịch vụ</Text>
-                       </TouchableOpacity>
+                </View>
+                <ImageBackground style = {{flex:1}} source = {require('../assets/backgroundImage5.png')} style = {mainStyle.boundImg}>
+                    <View style = {mainStyle.boundBtn_1}>
+                            <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}>
+                                <Image source = {require('../assets/sauDangNhap1.png')} style = {mainStyle.iconBtn}></Image>
+                                <Text style = {mainStyle.redColor}>Danh sách</Text>
+                                <Text style = {mainStyle.redColor}>đã gọi</Text>
+                            </TouchableOpacity>
                     </View>
-                   <View style = {mainStyle.column_3}></View>
-               </View>
-               <View style = {mainStyle.row_3}>
-                    <View style = {mainStyle.column_1}>
-                    <TouchableOpacity  style = {{width:'80%', height:'100%',marginLeft:22,}}>
-                           <View style = {{alignItems:'center'}}>
-                                <View>
-                                    <Image source = {require('../assets/lock.png')} style = {{width: 70 * standarWidth/ width , height:70 * standarHeight/height, resizeMode:'contain'}}></Image>
-                                </View>
-                                <Text style = {mainStyle.redColor}>Đổi</Text>
-                                <Text style = {mainStyle.redColor}>mật khẩu</Text>
-                           </View>
-                       </TouchableOpacity>
+                    <View style = {mainStyle.boundBtn_2}>
+                            <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}>
+                                <Image source = {require('../assets/search.png')} style = {mainStyle.iconBtn}></Image>
+                                <Text style = {mainStyle.redColor}>Tìm kiếm</Text>
+                                <Text style = {mainStyle.redColor}>dịch vụ</Text>
+                            </TouchableOpacity>
                     </View>
-                   <View style = {mainStyle.column_2}></View>
-                   <View style = {mainStyle.column_3}>
-                        <TouchableOpacity  style = {{width:'80%', height:'100%',marginLeft:7,}}>
-                           <View style = {{alignItems:'center'}}>
-                                <View>
-                                    <Image source = {require('../assets/12.png')} style = {{width: 70 * standarWidth/ width , height:70 * standarHeight/height, resizeMode:'contain'}}></Image>
-                                </View>
+                    <View style = {mainStyle.boundBtn_3}>
+                            <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}>
+                                <Image source = {require('../assets/lock.png')} style = {mainStyle.iconBtn}></Image>
+                                <Text style = {mainStyle.redColor}>Đổi mật</Text>
+                                <Text style = {mainStyle.redColor}>khẩu</Text>
+                            </TouchableOpacity>
+                    </View>
+                    <View style = {mainStyle.boundBtn_4}>
+                            <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}>
+                                <Image source = {require('../assets/12.png')} style = {mainStyle.iconBtn}></Image>
                                 <Text style = {mainStyle.redColor}>Điều khoản</Text>
                                 <Text style = {mainStyle.redColor}>sử dụng</Text>
-                           </View>
-                       </TouchableOpacity>
-                   </View>
-               </View>
-               <View style = {mainStyle.row_4}>
-                    <View style = {mainStyle.column_1}></View>
-                   <View style = {mainStyle.column_2}>
-                       <TouchableOpacity style = {{alignItems:'center'}}>
-                            <View>
-                                    <Image source = {require('../assets/13.png')} style = {{width: 60* standarWidth/ width , height:70 * standarHeight/height, resizeMode:'contain'}}></Image>
-                            </View>
-                            <Text style = {{textAlign:'center',color:'red'}}>Đăng xuất</Text>
-                       </TouchableOpacity>
-                   </View>
-                   <View style = {mainStyle.column_3}></View>
-               </View>
-               <View style = {mainStyle.row_5}>
-                    <TouchableOpacity style = {mainStyle.avatar}>
-                        <View >
-                            <Image source = {require('../assets/saudangnhap3.png')} style = {{width: 150 * standarWidth/ width , height:150 * standarHeight/height, resizeMode:'contain'}}></Image>
-                       </View>
-                    </TouchableOpacity>
-                   <View style = {mainStyle.column_2}></View>
-                   <View style = {mainStyle.column_3}>
-                       <TouchableOpacity  style = {{width:'80%', height:'100%',marginLeft:7,}}>
-                           <View style = {{alignItems:'center'}}>
-                                <View>
-                                    <Image source = {require('../assets/14.png')} style = {{width: 70 * standarWidth/ width , height:70 * standarHeight/height, resizeMode:'contain'}}></Image>
-                                </View>
-                                <Text style = {mainStyle.redColor}>Trở thành TK</Text>
+                            </TouchableOpacity>
+                    </View>
+                    <View style = {mainStyle.boundBtn_5}>
+                            <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}>
+                                <Image source = {require('../assets/13.png')} style = {mainStyle.iconBtn}></Image>
+                                <Text style = {mainStyle.redColor}>Danh sách </Text>
+                                <Text style = {mainStyle.redColor}>đã gọi</Text>
+                            </TouchableOpacity>
+                    </View>
+                    <View style = {mainStyle.boundBtn_6}>
+                            <TouchableOpacity style = {{width:width/3, alignItems:'center', justifyContent:'center'}}>
+                                <Image source = {require('../assets/14.png')} style = {mainStyle.iconBtn}></Image>
+                                <Text style = {mainStyle.redColor}>Trở thành TK </Text>
                                 <Text style = {mainStyle.redColor}>kỹ thuật</Text>
-                           </View>
+                            </TouchableOpacity>
+                    </View>
+                    <View style = {mainStyle.avatar}>
+                        <TouchableOpacity style = {{marginTop: (((width*1280)/ 720) * 69) /1280, marginLeft:(((width*1280)/ 720) * 89) /1280}}>
+                            <Image source = {require('../assets/saudangnhap3.png')} style = {{width: (((width*1280)/ 720) * 180) /1280 , height:(((width*1280)/ 720) * 180) /1280, resizeMode:'contain'}}></Image>
                        </TouchableOpacity>
-                   </View>
-               </View>
-               <View style = {mainStyle.row_6}>
-                   <TouchableOpacity>
-                        <Text style = {{color:'red', fontWeight:'bold', fontSize:16}}>Lưu Hoàng Mai Anh</Text>
+                       <TouchableOpacity style = {mainStyle.btnNameUnderAvatar}>
+                           <Text style = {{fontWeight:'bold', color:'#f42535'}}>Lưu Hoàng Mai Anh</Text>
+                       </TouchableOpacity>
+                       <TouchableOpacity style = {mainStyle.btnUnderName}>
+                            <View style = {{justifyContent:'center'}}>
+                                <Image source = {require('../assets/121.png')} style = {{width:(((width*1280)/ 720) * 35) /1280, height:(((width*1280)/ 720) * 35) /1280, resizeMode:'contain'}}></Image>
+                            </View>
+                            <View style = {{marginLeft:2,}}>
+                                <Text>Thông tin tài khoản</Text>
+                            </View>
                    </TouchableOpacity>
-                   <TouchableOpacity style = {{flexDirection:'row'}}>
-                        <View style = {{justifyContent:'center'}}>
-                            <Image source = {require('../assets/121.png')} style = {{width:20, height:20, resizeMode:'contain'}}></Image>
-                        </View>
-                        <View style = {{marginLeft:5,}}>
-                            <Text>Thông tin tài khoản</Text>
-                        </View>
-                   </TouchableOpacity>
-               </View>
-           </ImageBackground>
+                    </View>
+                </ImageBackground>
+            </View>
         );
     }
 }

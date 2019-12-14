@@ -20,10 +20,16 @@ class AjaxControllersAjax extends FSControllers{
         $data['last_name'] = FSInput::get('last_name', '', 'str');
         $data['gender'] = FSInput::get('gender', '', 'str');
         $data['birthday'] = FSInput::get('birthday', '', 'str');
+        $data['city_id'] = FSInput::get('city_id', 0);
+        $data['district_id'] = FSInput::get('district_id', 0);
         $data['address'] = FSInput::get('address', '', 'str');
+        $data['service_charge'] = FSInput::get('service_charge', '', 'str');
+        $data['machine_type'] = FSInput::get('machine_type', '', 'str');
+        $data['experience'] = FSInput::get('experience', '', 'str');
+        $data['work_done'] = FSInput::get('work_done', '', 'str');
         $data['version'] = FSInput::get('version', 'guest', 'str');
         $data['created_time'] = date('Y-m-d H:i:s');
-        $data['published'] = 1;
+        $data['published'] = 1; 
         if ($user->checkExitsEmail($data['email'])) {
             $json['message'] = 'Email này đã có người sử dụng';
             goto json_encode;
@@ -33,6 +39,59 @@ class AjaxControllersAjax extends FSControllers{
             $user->updateUser(array('code' => 'M' . str_pad($user_id, 6, "0", STR_PAD_LEFT)), $user_id);
             $json['error'] = 0;
             $json['message'] = 'Bạn đã đăng ký thành công!';
+        }
+
+        json_encode:
+        echo json_encode($json);
+    }
+
+    function update_member(){
+        global $user;
+        $json = array(
+            'error' => 1,
+            'message' => 'Có lỗi trong quá trình xử lý, vui lòng kiểm tra lại kết nối!',
+            'user' => array()
+        );
+
+        $id = FSInput::get('id', 0);
+        $data = array();
+        $data['first_name'] = FSInput::get('first_name', '', 'str');
+        $data['last_name'] = FSInput::get('last_name', '', 'str');
+        $data['gender'] = FSInput::get('gender', '', 'str');
+        $data['birthday'] = FSInput::get('birthday', '', 'str');
+        $data['city_id'] = FSInput::get('city_id', 0);
+        $data['district_id'] = FSInput::get('district_id', 0);
+        $data['address'] = FSInput::get('address', '', 'str');
+        $data['service_charge'] = FSInput::get('service_charge', '', 'str');
+        $data['machine_type'] = FSInput::get('machine_type', '', 'str');
+        $data['experience'] = FSInput::get('experience', '', 'str');
+        $data['work_done'] = FSInput::get('work_done', '', 'str');
+
+        $user->updateUser($data, $id);
+        if ($id) {
+            $user->loadUser($id);
+            $json['error'] = 0;
+            $json['message'] = 'Bạn đã đăng ký thành công!';
+
+            $json['user'] = array(
+                'id' => $user->userInfo->id,
+                'email' => $user->userInfo->email,
+                'mobile' => $user->userInfo->mobile,
+                'version' => $user->userInfo->version,
+                'first_name' => $user->userInfo->first_name,
+                'last_name' => $user->userInfo->last_name,
+                'longitude' => $longitude,
+                'latitude' => $latitude,
+                'gender' => $user->userInfo->gender, 
+                'birthday' => $user->userInfo->birthday, 
+                'city_id' => $user->userInfo->city_id, 
+                'district_id' => $user->userInfo->district_id, 
+                'address' => $user->userInfo->address, 
+                'service_charge' => $user->userInfo->service_charge, 
+                'machine_type' => $user->userInfo->machine_type, 
+                'experience' => $user->userInfo->experience, 
+                'work_done' => $user->userInfo->work_done,
+            );
         }
 
         json_encode:
@@ -65,7 +124,16 @@ class AjaxControllersAjax extends FSControllers{
                 'first_name' => $user->userInfo->first_name,
                 'last_name' => $user->userInfo->last_name,
                 'longitude' => $longitude,
-                'latitude' => $latitude
+                'latitude' => $latitude,
+                'gender' => $user->userInfo->gender, 
+                'birthday' => $user->userInfo->birthday, 
+                'city_id' => $user->userInfo->city_id, 
+                'district_id' => $user->userInfo->district_id, 
+                'address' => $user->userInfo->address, 
+                'service_charge' => $user->userInfo->service_charge, 
+                'machine_type' => $user->userInfo->machine_type, 
+                'experience' => $user->userInfo->experience, 
+                'work_done' => $user->userInfo->work_done,
             );
 
             $user->updateUser(array(

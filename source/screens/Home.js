@@ -20,7 +20,7 @@ export default class Home extends Component{
 		getStorage('user')
         .then(user => { 
             if(user != '')
-				this.props.navigation.navigate('SearchScreen');
+				this.props.navigation.navigate('MemberScreen');
         });
     }
 	

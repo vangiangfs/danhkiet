@@ -95,7 +95,7 @@ export default class Login extends Component{
             if(responseJson.error == '0'){
                 saveStorage('user', JSON.stringify(responseJson.user));
                 // global.onSignIn();
-                this.props.navigation.navigate('SearchScreen');
+                this.props.navigation.navigate('MemberScreen');
             }else{
                 Alert.alert('Thông báo', responseJson.message);
             }

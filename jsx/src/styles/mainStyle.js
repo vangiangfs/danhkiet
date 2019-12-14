@@ -279,7 +279,7 @@ export default StyleSheet.create({
     containTextHeader2:{
         alignItems:'center',
         flex:9,
-        marginTop:30,
+        marginTop:35,
     },
     textHeader2:{
         color:'#ffffff',
@@ -370,7 +370,7 @@ export default StyleSheet.create({
         backgroundColor:'#f0f0f0'
     },
     buttonBack2:{
-        marginTop:30,
+        marginTop:35,
         marginLeft:20,
     },
     container3:{
@@ -440,7 +440,7 @@ export default StyleSheet.create({
     },
     header4:{
         width:'100%',
-        height:buttonHeight* 6,
+        height:buttonHeight* 7,
         backgroundColor:'#f42535',
         margin:0,
         flexDirection:'row'
@@ -865,41 +865,89 @@ export default StyleSheet.create({
     containImageFooter:{
         width:'15%', height:'100%', marginLeft:5, marginRight:5,
     },
-    row_1:{
-        width:'100%', height:(395 /1280) * height, flexDirection:'row'
-    },
-    row_2:{
-        width:'100%', height:(185 /1280) * height, flexDirection:'row'
-    },
-    row_3:{
-        width:'100%', height:(205 /1280) * height, flexDirection:'row'
-    },
-    row_4:{
-        width:'100%', height:(175 /1280) * height, flexDirection:'row'
-    },
-    row_5:{
-        width:'100%', height:(200 /1280) * height, flexDirection:'row'
-    },
-    row_6:{
-        width:'100%',
-        marginLeft:20
-    },
-    column_1:{
-        width:(285 /720) * width,height:'100%', 
-    },
-    column_2:{
-        width:(150 /720) * width,height:'100%',  alignItems:'center'
-    },
-    column_3:{
-        width:(285 /720) * width,height:'100%', 
-    },
     avatar:{
-        width:(285 /720) * width,height:'100%',paddingLeft: 19 * standarWidth/width 
+        position:'absolute',
+        height: (((width*1280)/ 720) * 500) /1280,
+        width: width/2,
+        top: (((width*1280)/ 720) * 362) /640 + (((width*1280)/ 720) * 110) /1280, left:0,
+        zIndex:1,
     },
     redColor:{
-        color:'red'
+        color:'#f42535'
     },
     logoHome:{
-        justifyContent:'center'
+        justifyContent:'center',
+        alignItems:'center',
+        position:'absolute', top:(((width*1280)/ 720) * 50) /1280, right:0,
+        height:  (((width*1280)/ 720) * 500) /1280,
+        width: width /2,
+        zIndex:3
+    },
+    boundImg:{
+        width: width,
+        height: (width*1280)/ 720,
+        position: 'absolute',
+        bottom: 0,
+        left:0 ,
+        resizeMode:'stretch',
+        zIndex:2
+    },
+    boundBtn_1:{
+        marginTop: (((width*1280)/ 720) * 110) /1280,
+        height: (((width*1280)/ 720) * 362) /1280,
+        width: width / 2,
+        alignItems:'center',
+        justifyContent:'center',
+        position:'absolute',
+        top:0, left:0,
+    },
+    boundBtn_2:{
+        position:'absolute',
+        height: (((width*1280)/ 720) * 362) /1280,
+        width: width / 2,
+        top:(((width*1280)/ 720) * 362) /2560 + (((width*1280)/ 720) * 110) /1280, left:(((width*1280)/ 720) * 360) /2560,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    boundBtn_3:{
+        position:'absolute',
+        height: (((width*1280)/ 720) * 362) /1280,
+        width: width / 2,
+        top:(((width*1280)/ 720) * 362) /1280 + (((width*1280)/ 720) * 110) /1280, left:0,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    boundBtn_4:{
+        position:'absolute',
+        height: (((width*1280)/ 720) * 362) /1280,
+        width: width / 2,
+        top:(((width*1280)/ 720) * 362) /1280 + (((width*1280)/ 720) * 110) /1280, left: (((width*1280)/ 720) * 360) /1280,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    boundBtn_5:{
+        position:'absolute',
+        height: (((width*1280)/ 720) * 362) /1280,
+        width: width / 2,
+        top: 3*(((width*1280)/ 720) * 362) /2560 + (((width*1280)/ 720) * 110) /1280, left:(((width*1280)/ 720) * 360) /2560,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    boundBtn_6:{
+        position:'absolute',
+        height: (((width*1280)/ 720) * 362) /1280,
+        width: width / 2,
+        top: (((width*1280)/ 720) * 355) /640 + (((width*1280)/ 720) * 110) /1280, left: (((width*1280)/ 720) * 360) /1280,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    iconBtn:{
+        width:(((width*1280)/ 720) * 66)/1280, height:(((width*1280)/ 720) * 66)/1280, resizeMode:'contain'
+    },
+    btnNameUnderAvatar:{
+        marginLeft:(((width*1280)/ 720) * 35) /1280, marginTop:5
+    },
+    btnUnderName:{
+        flexDirection:'row',marginLeft:(((width*1280)/ 720) * 35) /1280, marginTop:5
     }
 });

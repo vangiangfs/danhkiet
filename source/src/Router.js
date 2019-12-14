@@ -8,6 +8,15 @@ import Menu from './../screens/Menu';
 import Register from './../screens/member/Register';
 import RegisterSuccess from './../screens/member/RegisterSuccess';
 import Login from './../screens/member/Login';
+import Member from './../screens/member/Member';
+import MemberInfo from './../screens/member/MemberInfo';
+import TransactionHistories from './../screens/member/TransactionHistories';
+import ChangePassword from './../screens/member/ChangePassword';
+import ClickStatistics from './../screens/member/ClickStatistics';
+import WorksMeasure from './../screens/member/WorksMeasure';
+import TermsUse from './../screens/member/TermsUse';
+import AccountExtension from './../screens/member/AccountExtension';
+import CalledList from './../screens/member/CalledList';
 import Search from './../screens/Search';
 import SearchResults from './../screens/SearchResults';
 
@@ -20,6 +29,33 @@ export const DKStack = createStackNavigator({
     },
     RegisterSuccessScreen: {
         screen: RegisterSuccess
+    },
+    MemberScreen: {
+        screen: Member
+    },
+    MemberInfoScreen: {
+        screen: MemberInfo
+    },
+    TransactionHistoriesScreen: {
+        screen: TransactionHistories
+    },
+    ChangePasswordScreen: {
+        screen: ChangePassword
+    },
+    ClickStatisticsScreen: {
+        screen: ClickStatistics
+    },
+    WorksMeasureScreen: {
+        screen: WorksMeasure
+    },
+    TermsUseScreen: {
+        screen: TermsUse
+    },
+    AccountExtensionScreen: {
+        screen: AccountExtension
+    },
+    CalledListScreen: {
+        screen: CalledList
     },
     LoginScreen: {
         screen: Login

@@ -10,6 +10,9 @@ import { Marker } from 'react-native-maps';
 import {getCountries, getCities, getDistricts, getWards} from '../src/api/apiGlobal';
 
 export default class Search extends Component {
+    static navigationOptions = ({ navigation }) => ({
+        header: null,
+    });
     
     constructor(props) {
         super(props);
