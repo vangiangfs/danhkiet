@@ -43,7 +43,7 @@ export default class Member extends Component {
             <View style = {mainStyle.avatar}>
                 <TouchableOpacity style = {{marginTop: (((width*1280)/ 720) * 69) /1280, marginLeft:(((width*1280)/ 720) * 89) /1280}}
                     onPress={()=>this.props.navigation.navigate('MemberInfoScreen', {version: this.state.user.version})}>
-                    <Image source = {require('../../assets/saudangnhap3.png')} style = {{width: (((width*1280)/ 720) * 180) /1280 , height:(((width*1280)/ 720) * 180) /1280, resizeMode:'contain'}}></Image>
+                    <Image source = {require('../../assets/no-member.png')} style = {{width: (((width*1280)/ 720) * 180) /1280 , height:(((width*1280)/ 720) * 180) /1280, resizeMode:'contain'}}></Image>
                 </TouchableOpacity>
                 <TouchableOpacity style = {mainStyle.btnNameUnderAvatar}
                     onPress={()=>this.props.navigation.navigate('MemberInfoScreen', {version: this.state.user.version})}>

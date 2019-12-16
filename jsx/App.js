@@ -53,8 +53,8 @@ export default class App extends Component{
 			//<DangKyKyThuat></DangKyKyThuat>
 			//<TimKiem></TimKiem>
 			//<DieuKhoan></DieuKhoan>
-			//<TimKiem1></TimKiem1>
-			<KetQuaTimKiem></KetQuaTimKiem>
+			<TimKiem1></TimKiem1>
+			//<KetQuaTimKiem></KetQuaTimKiem>
 			//<DanhSachDaGoi></DanhSachDaGoi>
 			//<DoiMatKhau></DoiMatKhau>
 			//<DangKyKhachHangThanhCong></DangKyKhachHangThanhCong>

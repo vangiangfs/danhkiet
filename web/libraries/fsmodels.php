@@ -54,7 +54,7 @@ class FSModels {
 		global $db;
 		$sql = ' INSERT INTO  ' . $table_name;
 		$sql .= '(' . $str_fields . ") ";
-		$sql .= 'VALUES (' . $str_values . ") ";
+		$sql .= 'VALUES (' . $str_values . ") "; echo $sql;
 		$db->query ( $sql );
 		$id = $db->insert ();
 		return $id;

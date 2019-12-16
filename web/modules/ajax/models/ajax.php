@@ -43,5 +43,66 @@ class AjaxModelsAjax extends FSModels{
 				ORDER BY `ordering`";
 		$db->query ( $sql );
 		return $db->getObjectList ();
-    }
+	}
+	
+	function get_search_results(){
+		global $db;
+		$country_id = FSInput::get('country_id', 0);
+		$city_id = FSInput::get('city_id', 0);
+		$district_id = FSInput::get('district_id', 0);
+		$ward_id = FSInput::get('ward_id', 0);
+		$fullname = FSInput::get('fullname', '');
+		$mobile = FSInput::get('mobile', '');
+
+		$where = ' published = 1 AND version = \'technical\'';
+
+		if($city_id)
+			$where .= ' AND city_id='.intval($city_id);
+		if($district_id)
+			$where .= ' AND district_id='.intval($district_id);
+		if($mobile)
+			$where .= ' AND mobile LIKE \'%'.$mobile.'%\'';
+
+		
+
+		$sql = "SELECT * FROM fs_members 
+				WHERE " . $where . "
+				ORDER BY id DESC";
+		$db->query_limit($sql, $this->limit, $this->page);
+		return $db->getObjectList ();
+	}
+
+	function save_call_technical(){
+		$tech_id = FSInput::get('tech_id', 0);
+		$guest_id = FSInput::get('guest_id', 0);
+		$country_id = FSInput::get('country_id', 0);
+		$city_id = FSInput::get('city_id', 0);
+		$district_id = FSInput::get('district_id', 0);
+		$ward_id = FSInput::get('ward_id', 0);
+		$summary = FSInput::get('summary', '');
+
+		return $this->_add(array(
+			'tech_id' => $tech_id,
+			'guest_id' => $guest_id,
+			'country_id' => $country_id,
+			'city_id' => $city_id,
+			'district_id' => $district_id,
+			'ward_id' => $ward_id,
+			'summary' => $summary,
+			'created_time' => date('Y-m-d H:i:s')
+		), 'fs_works_measure');
+	}
+
+	function get_called_list(){
+		global $db;
+		$guest_id = FSInput::get('guest_id', 0);
+
+		$sql = "SELECT a.*, 
+				FROM fs_works_measure AS a 
+					INNER JOIN fs_members AS b On a.guest_id = b.id
+				WHERE guest_id = " . intval($guest_id) . "
+				ORDER BY a.id DESC";
+		$db->query_limit($sql, $this->limit, $this->page);
+		return $db->getObjectList ();
+	}
 }                                                                                                                                      

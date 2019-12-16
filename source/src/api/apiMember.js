@@ -23,3 +23,11 @@ export function submitLogin (username, password, token, version, latitude, longi
     return fetch(url)
     .then(res => res.json());
 };
+
+export function getCalledList(guest_id){
+    let url;
+    url = global.BASE_URL+`/get_called_list.api?guest_id=${guest_id}`;
+    console.log(url);
+    return fetch(url)
+    .then(res => res.json());
+};

@@ -243,4 +243,73 @@ class AjaxControllersAjax extends FSControllers{
         json_encode:
         echo json_encode($json);
     }
+
+    function get_search_results(){
+        ob_start();
+        $json = array(
+            'error' => true,
+            'list' => array(),
+        );
+        $list = $this->model->get_search_results();
+        if($list){
+            $json['error'] = false;
+            
+            foreach($list as $item){
+                $json['list'][] = array(
+                    'id' => $item->id,
+                    'name' => $item->first_name.' '.$item->last_name,
+                    'mobile' => $item->mobile,
+                    'avatar' => $item->avatar,
+                    'distance' => '...',
+                    'latitude' => $item->latitude,
+                    'longitude' => $item->longitude,
+                );
+            }
+        }
+
+        ob_end_clean();
+        json_encode:
+        echo json_encode($json);
+    }
+
+    function save_call_technical(){
+        ob_start();
+        $json = array(
+            'error' => true
+        );
+
+        $id = $this->model->save_call_technical();
+
+        //ob_end_clean();
+        json_encode:
+        echo json_encode($json);
+    }
+
+    function get_called_list(){
+        ob_start();
+        $json = array(
+            'error' => true,
+            'list' => array(),
+        );
+        $list = $this->model->get_called_list();
+        if($list){
+            $json['error'] = false;
+            
+            foreach($list as $item){
+                $json['list'][] = array(
+                    'id' => $item->id,
+                    'name' => $item->first_name.' '.$item->last_name,
+                    'mobile' => $item->mobile,
+                    'avatar' => $item->avatar,
+                    'distance' => '...',
+                    'latitude' => $item->latitude,
+                    'longitude' => $item->longitude,
+                );
+            }
+        }
+
+        ob_end_clean();
+        json_encode:
+        echo json_encode($json);
+    }
 }

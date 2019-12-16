@@ -24,8 +24,8 @@ export default StyleSheet.create({
         backgroundColor:'#f0f0f0',
     },
     logo_home:{
-        width:150* standarWidth / width, 
-        height:150 * standarHeight / height,
+        width:(((width*1280)/ 720) * 200) /1280, 
+        height:(((width *1280)/ 720) * 250) /1280,
         resizeMode:'contain'
     },
     content_1:{     
@@ -574,14 +574,15 @@ export default StyleSheet.create({
         alignItems:'center'
     },
     oneLine_1:{
-        width:'20%',
+        width:(((width*1280)/ 720) * 138) /1280,
         justifyContent:'center'
     },
     oneLine_2:{
-        width:'70%',
+        width:(((width*1280)/ 720) * 430) /1280,
         flexDirection:'column'
     },
     oneLine_3:{
+        width:(((width*1280)/ 720) * 70) /1280,
         justifyContent:'center'
     },
     lichSuGiaoDich:{
@@ -876,9 +877,8 @@ export default StyleSheet.create({
         color:'#f42535'
     },
     logoHome:{
-        justifyContent:'center',
         alignItems:'center',
-        position:'absolute', top:(((width*1280)/ 720) * 50) /1280, right:0,
+        position:'absolute', top:(((width*1280)/ 720) * 100) /1280, right:0,
         height:  (((width*1280)/ 720) * 500) /1280,
         width: width /2,
         zIndex:3

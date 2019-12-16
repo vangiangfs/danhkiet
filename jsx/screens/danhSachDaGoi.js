@@ -87,7 +87,7 @@ export default class DanhSachDaGoi extends Component {
                     <View style = {mainStyle.oneLine}>
                         <View style = {mainStyle.oneLine_1}>
                             <TouchableOpacity>
-                                <Image source = {require('../assets/avatar.png')} style = {{height:80 * standarHeight/height, width:80 * standarWidth / width , resizeMode:'cover'}}/>
+                                <Image source = {require('../assets/avatar.png')} style = {{height:(((width*1280)/ 720) * 125) /1280, width:(((width*1280)/ 720) * 125) /1280 , resizeMode:'cover'}}/>
                             </TouchableOpacity>
                         </View>
                         <View style = {mainStyle.oneLine_2}>
@@ -131,7 +131,7 @@ export default class DanhSachDaGoi extends Component {
                         <View style = {mainStyle.oneLine_3}>
                             <View style = {mainStyle.iconCall}>
                                 <TouchableOpacity onPress= { () => alert('Call')}>
-                                    <Image source = {require('../assets/iconCall.png')} style = {{width:35, height:35, resizeMode:'cover'}}></Image>
+                                    <Image source = {require('../assets/iconCall.png')} style = {{width:(((width*1280)/ 720) * 65) /1280, height:(((width*1280)/ 720) * 65) /1280, resizeMode:'cover'}}></Image>
                                 </TouchableOpacity>
                             </View>
                         </View>

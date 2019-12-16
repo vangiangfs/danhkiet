@@ -15,7 +15,7 @@ export default {
         height: buttonHeight * 5 + Constants.statusBarHeight,
     },
     mapViewDefault: {
-        height: width*9/16
+        height: width*9/16,
     },
     fContainInput:{
         flexDirection:'row',
@@ -48,5 +48,31 @@ export default {
         height: buttonHeight * 4,
         textAlign: 'left',
         width:'90%',
+    },
+    fMapCenter:{
+        height: 32,
+        width: 32
+    },
+    fMapPoint:{
+        height: 35,
+        width: 35*61/70
+    },
+    fSRAvatar:{
+        height: 70 , 
+        width: 70
+    },
+    fSRNameBtn:{
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    fSRNameText:{
+        fontWeight:'bold',
+        fontSize: 14,
+        textAlign:'center',
+        marginLeft:2
+    },
+    fCalledItemThumb:{
+        justifyContent:'center',
+        width: 95
     }
 }

@@ -19,7 +19,7 @@ export default class DangNhapKyThuat extends Component{
 		<ImageBackground source = {require('../assets/backgroundImage.png')} style = {mainStyle.container}>
 			<View style = {mainStyle.content_1_LoginClient}>
 				<View style = {mainStyle.content_1a}>
-					<Image source = {require('../assets/logo.png')} style = {{width:100 * standarWidth/ width , height:100 * standarHeight / height, resizeMode:'contain'}}></Image>
+					<Image source = {require('../assets/logo.png')} style = {mainStyle.logo_home}></Image>
 				</View>
 				<View style = {mainStyle.content_1b}>
 					<Text style = {mainStyle.textContent_1b}>Đăng nhập </Text>
