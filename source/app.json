@@ -37,7 +37,12 @@
     "android": {
       "package": "com.danhkiet.app",
       "versionCode": 10,
-      "permissions": ["CAMERA", "WRITE_EXTERNAL_STORAGE", "READ_EXTERNAL_STORAGE", "ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"]
+      "permissions": ["CAMERA", "WRITE_EXTERNAL_STORAGE", "READ_EXTERNAL_STORAGE", "ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyB5AmX1aPuJxkthyYLebe-WvVg3G53Gv3Q"
+        }
+      }
   }
   }
 }

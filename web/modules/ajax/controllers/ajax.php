@@ -106,12 +106,12 @@ class AjaxControllersAjax extends FSControllers{
             'message' => 'Có lỗi trong quá trình xử lý, vui lòng kiểm tra lại kết nối!'
         );
 
-        $email = FSInput::get('email');
+        $username = FSInput::get('username');
         $password = FSInput::get('password');
         $version = FSInput::get('version');
         $longitude = FSInput::get('longitude');
         $latitude = FSInput::get('latitude');
-        $loged = $user->login($email, $password, $version);
+        $loged = $user->login($username, $password, $version);
         if ($loged) {
             $json['error'] = 0;
             $json['message'] = 'Bạn đã đăng nhập thành công.';
@@ -299,11 +299,35 @@ class AjaxControllersAjax extends FSControllers{
                 $json['list'][] = array(
                     'id' => $item->id,
                     'name' => $item->first_name.' '.$item->last_name,
+                    'service_charge' => format_money($item->service_charge).' VNĐ',
+                    'city_name' => $item->city_name,
                     'mobile' => $item->mobile,
-                    'avatar' => $item->avatar,
-                    'distance' => '...',
-                    'latitude' => $item->latitude,
-                    'longitude' => $item->longitude,
+                );
+            }
+        }
+
+        ob_end_clean();
+        json_encode:
+        echo json_encode($json);
+    }
+
+    function get_works_measure(){
+        ob_start();
+        $json = array(
+            'error' => true,
+            'list' => array(),
+        );
+        $list = $this->model->get_works_measure();
+        if($list){
+            $json['error'] = false;
+            
+            foreach($list as $item){
+                $json['list'][] = array(
+                    'id' => $item->id,
+                    'name' => $item->first_name.' '.$item->last_name,
+                    'summary' => $item->summary,
+                    'address' => $item->address,
+                    'mobile' => $item->mobile,
                 );
             }
         }

@@ -161,7 +161,7 @@ class FSUser{
     	  	$password = "'$password'";
     	}
     	$db->query("SELECT * FROM `".$this->tbStore."` 
-    	WHERE (`email` = '$uname' OR `username` = '$uname' OR `mobile` = '$uname') AND `password` = $password AND `version`='$version' LIMIT 1");
+    	WHERE (`mobile` = '$uname') AND `password` = $password AND `version`='$version' LIMIT 1");
         $user = $db->getObject(); 
     	if ( !$user )
     		return false;

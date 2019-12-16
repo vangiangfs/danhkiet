@@ -97,10 +97,23 @@ class AjaxModelsAjax extends FSModels{
 		global $db;
 		$guest_id = FSInput::get('guest_id', 0);
 
-		$sql = "SELECT a.*, 
+		$sql = "SELECT a.id, b.first_name, b.last_name, b.city_name, b.service_charge, b.mobile
+				FROM fs_works_measure AS a 
+					INNER JOIN fs_members AS b On a.tech_id = b.id
+				WHERE a.guest_id = " . intval($guest_id) . "
+				ORDER BY a.id DESC";
+		$db->query_limit($sql, $this->limit, $this->page);
+		return $db->getObjectList ();
+	}
+
+	function get_works_measure(){
+		global $db;
+		$tech_id = FSInput::get('tech_id', 0);
+
+		$sql = "SELECT a.id, b.first_name, b.last_name, a.summary, b.address, b.mobile
 				FROM fs_works_measure AS a 
 					INNER JOIN fs_members AS b On a.guest_id = b.id
-				WHERE guest_id = " . intval($guest_id) . "
+				WHERE a.tech_id = " . intval($tech_id) . "
 				ORDER BY a.id DESC";
 		$db->query_limit($sql, $this->limit, $this->page);
 		return $db->getObjectList ();

@@ -1,59 +1,11 @@
 import React, {Component} from 'react';
-import {View,Text,Image,TouchableOpacity,ScrollView,FlatList,Dimensions}from 'react-native';
+import {View,Text,Image,TouchableOpacity,ScrollView,FlatList,Dimensions,ActivityIndicator}from 'react-native';
 import mainStyle from '../../src/styles/mainStyle';
+import { Container } from "native-base";
 
-const DATA = [
-    {
-        name: 'Vũ Ngọc Châm',
-        dichVu :'Đo đạc',
-        phiDichVu:'200.000đ/ngày',
-        diaChi:'Hà Nội',
-        ID:'1',
-
-    },
-    {
-        name: 'Vũ Giáng Ly',
-        dichVu :'Đo đạc',
-        phiDichVu:'200.000đ/ngày',
-        diaChi:'Hà Nội',
-        ID:'2'
-    },
-    {
-        name: 'Lưu Thanh Thủy',
-        dichVu :'Đo đạc',
-        phiDichVu:'200.000đ/ngày',
-        diaChi:'Hà Nội',
-        ID:'2'
-    },
-    {
-        name: 'Huỳnh Kim Ngân',
-        dichVu :'Đo đạc',
-        phiDichVu:'200.000đ/ngày',
-        diaChi:'Hà Nội',
-        ID:'4'
-    },
-    {
-        name: 'Huỳnh Kim Ngân',
-        dichVu :'Đo đạc',
-        phiDichVu:'200.000đ/ngày',
-        diaChi:'Hà Nội',
-        ID:'5'
-    },
-    {
-        name: 'Huỳnh Kim Ngân',
-        dichVu :'Đo đạc',
-        phiDichVu:'200.000đ/ngày',
-        diaChi:'Hà Nội',
-        ID:'6'
-    },
-    {
-        name: 'Huỳnh Kim Ngân',
-        dichVu :'Đo đạc',
-        phiDichVu:'200.000đ/ngày',
-        diaChi:'Hà Nội',
-        ID:'7'
-    },
-];
+import {getStorage} from '../../src/api/storage';
+import {getCalledList} from '../../src/api/apiMember';
+import HeaderBase from '../../screens/template/HeaderBase';
 
 export default class CalledList extends Component {
     constructor(props) {
@@ -77,8 +29,6 @@ export default class CalledList extends Component {
     }
 
     componentDidMount(){
-        const {country_id, city_id, district_id, ward_id, fullname, mobile, summary} = this.props.navigation.state.params;
-
         getStorage('user')
         .then(user => { 
             if(user != ''){
@@ -95,7 +45,7 @@ export default class CalledList extends Component {
 
         this.setState({ loading: true});
 		
-		getCalledList(this.state.user.id)
+		getCalledList(this.state.user.id, this.state.page)
         .then(resJSON => {
 			const {list, error } = resJSON;
 
@@ -150,76 +100,80 @@ export default class CalledList extends Component {
         );
     };
     
+    callTechnical(tech_id, tech_mobile){
+        Linking.openURL(`tel:${tech_mobile}`);
+        return false;
+    }
+
     render(){
+        const {navigation} = this.props;
         return(
-            <ScrollView>
-                <View style = {mainStyle.header4}>
-                    <View style = {mainStyle.buttonBack2} >
-                        <TouchableOpacity onPress = {() => alert('Icon Back')}>
-                            <Image source = {require('../../assets/iconBack.png')} style = {{width:25, width:25, resizeMode:'contain',zIndex:1}}></Image>
-                        </TouchableOpacity>
-                    </View>
-                    <View style = {mainStyle.containTextHeader2}>
-                        <Text style = {mainStyle.textHeader2}>Danh sách đã gọi</Text>
-                    </View>
-                </View>
-                <FlatList  style = {{marginLeft:20,marginRight:20}} data = {DATA} renderItem = {({item}) =>
-                    <View style = {mainStyle.oneLine}>
-                        <View style = {mainStyle.fCalledItemThumb}>
-                            <TouchableOpacity>
-                                <Image source = {require('../../assets/avatar.png')} style = {{height:80 , width:80}}/>
-                            </TouchableOpacity>
-                        </View>
-                        <View style = {mainStyle.oneLine_2}>
-                                <TouchableOpacity onPress= { () => alert(item.name)}>
-                                    <Text style = {{fontWeight:'bold',fontSize:textName}}>{item.name}</Text>
-                                </TouchableOpacity>
-                                <View style = {{flexDirection:'row'}}>
-                                    <View style = {{justifyContent:'center'}}>
-                                        <Image source = {require('../../assets/iconDichVu.png')} style = {{height:15,width:15,resizeMode:'center'}}></Image>
-                                    </View>
-                                    <Text style = {{color:'#999999',fontSize:textFontSize}}> Dịch Vụ: </Text>
-                                    <Text style = {{fontSize: textFontSize}}>{item.dichVu}</Text> 
-                                </View>
-                                <View style = {{flexDirection:'row'}}>
-                                    <View style = {{justifyContent:'center'}}>
-                                        <Image source = {require('../../assets/iconPhiDichVu.png')} style = {{height:15,width:15,resizeMode:'center'}}></Image>
-                                    </View>
-                                    <Text style = {{color:'#999999',fontSize:textFontSize}}> Phí Dịch Vụ: </Text>
-                                    <Text style = {{fontSize: textFontSize}}>{item.phiDichVu}</Text>
-                                </View>
-                                <View style = {{flexDirection:'row'}}>
-                                    <View style = {{justifyContent:'center'}}>
-                                        <Image source = {require('../../assets/iconLocation.png')} style = {{height:15,width:15,resizeMode:'center'}}></Image>
-                                    </View>
-                                    <Text style = {{color:'#999999',fontSize:textFontSize}}> Địa chỉ: </Text>
-                                    <Text style = {{fontSize: textFontSize}}>{item.diaChi}</Text>
-                                </View>
-                                <View style = {{flexDirection:'row'}}>
-                                    <View style = {{justifyContent:'center'}}>
-                                        <Image source = {require('../../assets/iconDanhGia.png')} style = {{height:15,width:15,resizeMode:'center'}}></Image>
-                                    </View>
-                                    <View style = {{flexDirection:'row'}}>
-                                        <Image source = {require('../../assets/iconStar.png')} style = {{height:15,width:15,resizeMode:'stretch'}}></Image>
-                                        <Image source = {require('../../assets/iconStar.png')} style = {{height:15,width:15,resizeMode:'stretch'}}></Image>
-                                        <Image source = {require('../../assets/iconStar.png')} style = {{height:15,width:15,resizeMode:'stretch'}}></Image>
-                                        <Image source = {require('../../assets/iconStar.png')} style = {{height:15,width:15,resizeMode:'stretch'}}></Image>
-                                        <Image source = {require('../../assets/iconStar.png')} style = {{height:15,width:15,resizeMode:'stretch'}}></Image>
-                                    </View>
-                                </View>
-                        </View>   
-                        <View style = {mainStyle.oneLine_3}>
-                            <View style = {mainStyle.iconCall}>
-                                <TouchableOpacity onPress= { () => alert('Call')}>
-                                    <Image source = {require('../../assets/iconCall.png')} style = {{width:35, height:35, resizeMode:'cover'}}></Image>
+            <Container>
+                <HeaderBase page="home" title={'Danh sách đã gọi'} navigation={navigation} />
+                <ScrollView>
+                    <FlatList  style = {{marginLeft:20,marginRight:20}} data = {this.state.list} renderItem = {({item}) =>
+                        <View style = {mainStyle.oneLine}>
+                            <View style = {mainStyle.fCalledItemThumb}>
+                                <TouchableOpacity>
+                                    <Image source = {require('../../assets/no-avatar.png')} style = {{height:80 , width:80}}/>
                                 </TouchableOpacity>
                             </View>
-                        </View>
-                    </View> 
-                    }
-                    keyExtractor={(item, index) => index.toString()}
-                    />
-            </ScrollView>
+                            <View style = {mainStyle.oneLine_2}>
+                                    <TouchableOpacity onPress= { () => alert(item.name)}>
+                                        <Text style = {{fontWeight:'bold',fontSize:textName}}>{item.name}</Text>
+                                    </TouchableOpacity>
+                                    <View style = {{flexDirection:'row'}}>
+                                        <View style = {{justifyContent:'center'}}>
+                                            <Image source = {require('../../assets/iconDichVu.png')} style = {{height:15,width:15,resizeMode:'center'}}></Image>
+                                        </View>
+                                        <Text style = {{color:'#999999',fontSize:textFontSize}}> Dịch Vụ: </Text>
+                                        <Text style = {{fontSize: textFontSize}}>Đo đạc</Text> 
+                                    </View>
+                                    <View style = {{flexDirection:'row'}}>
+                                        <View style = {{justifyContent:'center'}}>
+                                            <Image source = {require('../../assets/iconPhiDichVu.png')} style = {{height:15,width:15,resizeMode:'center'}}></Image>
+                                        </View>
+                                        <Text style = {{color:'#999999',fontSize:textFontSize}}> Phí Dịch Vụ: </Text>
+                                        <Text style = {{fontSize: textFontSize}}>{item.service_charge}</Text>
+                                    </View>
+                                    <View style = {{flexDirection:'row'}}>
+                                        <View style = {{justifyContent:'center'}}>
+                                            <Image source = {require('../../assets/iconLocation.png')} style = {{height:15,width:15,resizeMode:'center'}}></Image>
+                                        </View>
+                                        <Text style = {{color:'#999999',fontSize:textFontSize}}> Địa chỉ: </Text>
+                                        <Text style = {{fontSize: textFontSize}}>{item.city_name}</Text>
+                                    </View>
+                                    <View style = {{flexDirection:'row'}}>
+                                        <View style = {{justifyContent:'center'}}>
+                                            <Image source = {require('../../assets/iconDanhGia.png')} style = {{height:15,width:15,resizeMode:'center'}}></Image>
+                                        </View>
+                                        <View style = {{flexDirection:'row'}}>
+                                            <Image source = {require('../../assets/iconStar.png')} style = {{height:15,width:15,resizeMode:'stretch'}}></Image>
+                                            <Image source = {require('../../assets/iconStar.png')} style = {{height:15,width:15,resizeMode:'stretch'}}></Image>
+                                            <Image source = {require('../../assets/iconStar.png')} style = {{height:15,width:15,resizeMode:'stretch'}}></Image>
+                                            <Image source = {require('../../assets/iconStar.png')} style = {{height:15,width:15,resizeMode:'stretch'}}></Image>
+                                            <Image source = {require('../../assets/iconStar.png')} style = {{height:15,width:15,resizeMode:'stretch'}}></Image>
+                                        </View>
+                                    </View>
+                            </View>   
+                            <View style = {mainStyle.oneLine_3}>
+                                <View style = {mainStyle.iconCall}>
+                                    <TouchableOpacity onPress= { () => this.callTechnical(item.id, item.mobile)}>
+                                        <Image source = {require('../../assets/iconCall.png')} style = {{width:35, height:35, resizeMode:'cover'}}></Image>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View> 
+                        }
+                        keyExtractor={(item, index) => index.toString()}
+                        refreshing={this.state.refreshing}
+						ListFooterComponent={this.renderLoading}  
+						keyExtractor={item => item.id}
+						onEndReached={this.handleLoadMore}
+						onEndReachedThreshold={0.25}
+                        />
+                </ScrollView>
+            </Container>
         );
     }
 }

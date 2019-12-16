@@ -24,9 +24,17 @@ export function submitLogin (username, password, token, version, latitude, longi
     .then(res => res.json());
 };
 
-export function getCalledList(guest_id){
+export function getCalledList(guest_id, page){
     let url;
-    url = global.BASE_URL+`/get_called_list.api?guest_id=${guest_id}`;
+    url = global.BASE_URL+`/get_called_list.api?guest_id=${guest_id}&page=${page}`;
+    console.log(url);
+    return fetch(url)
+    .then(res => res.json());
+};
+
+export function getWorksMeasure(tech_id, page){
+    let url;
+    url = global.BASE_URL+`/get_works_measure.api?tech_id=${tech_id}&page=${page}`;
     console.log(url);
     return fetch(url)
     .then(res => res.json());
