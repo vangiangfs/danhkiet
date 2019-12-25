@@ -32,6 +32,9 @@
         "NSPhotoLibraryAddUsageDescription": "The application uses images to make avatar images",
         "NSPhotoLibraryUsageDescription": "The application uses images to make avatar images",
         "NSLocationWhenInUseUsageDescription": "Allow application experiences to use your location"
+      },
+      "config": {
+        "googleMapsApiKey": "AIzaSyAxnwYXjzmun8Cob-tALehR4rDLhtLg-O4"
       }
     },
     "android": {

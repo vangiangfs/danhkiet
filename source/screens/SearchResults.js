@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView, FlatList, Dimensions, ActivityIndicator, Linking }from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView, FlatList, Dimensions, ActivityIndicator, Linking, Platform }from 'react-native';
 import { Container } from "native-base";
 
 import HeaderBase from '../screens/template/HeaderBase';
 import {getStorage} from '../src/api/storage';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
+// import { MapView, Marker } from "expo";
 import mainStyle from '../src/styles/Style';
 import {getSearchResults, saveCallTechnical} from '../src/api/apiGlobal';
 

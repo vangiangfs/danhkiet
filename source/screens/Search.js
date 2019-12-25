@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, KeyboardAvoidingView}from 'react-native';
+import { View, Text, Image, TouchableOpacity, TextInput, ScrollView, ActivityIndicator, KeyboardAvoidingView, Platform, Alert}from 'react-native';
 import { Container, Icon, Picker} from "native-base";
 
 import mainStyle from '../src/styles/Style';
@@ -7,6 +7,7 @@ import HeaderBase from '../screens/template/HeaderBase';
 import {getStorage, saveStorage} from '../src/api/storage';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
+// import { MapView, Marker } from "expo";
 import {getCountries, getCities, getDistricts, getWards} from '../src/api/apiGlobal';
 
 export default class Search extends Component {
@@ -122,6 +123,13 @@ export default class Search extends Component {
     };
     
     onSubmit(){
+        console.log(this.state.summary);
+
+        if(this.state.summary == ''){
+            Alert.alert('Thông báo', 'Bạn vui lòng nhập nội dung công việc.');
+            return;
+        }
+
         var filters = {
             country_id: this.state.country_id,
             city_id: this.state.city_id,
@@ -131,6 +139,7 @@ export default class Search extends Component {
             mobile: this.state.mobile,
             summary: this.state.summary,
         };
+
         saveStorage('filters', JSON.stringify(filters));
         this.props.navigation.navigate('SearchResultsScreen', filters);
     }
@@ -145,11 +154,11 @@ export default class Search extends Component {
                     <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor:'#f1f1f1'}}>
                         <View style = {mainStyle.content1_body4}>
                             <Image source = {require('../assets/slide.png')} style = {mainStyle.slideShow}></Image>
-                            {/* <Text style = {{position:'absolute', bottom:80,left:'40%',color:'#fff',fontSize:20}}>SlideShow</Text> */}
                         </View>
                         <View style = {mainStyle.content2_body4}>
                             {this.state.loading == false?
                                 <MapView style={mainStyle.mapViewDefault}
+                                    pitchEnabled={false}
                                     initialRegion={{
                                         latitude: parseFloat(this.state.user.latitude),
                                         longitude: parseFloat(this.state.user.longitude),
@@ -257,7 +266,7 @@ export default class Search extends Component {
                                     placeholder="Nội dung công việc"
                                     placeholderTextColor="grey"
                                     numberOfLines={10}
-                                    multiline={true}
+                                    multiline={false}
                                     value={this.state.summary}
                                     returnKeyType="done"
                                     ref={(input) => { this.frmSummary = input; }}
