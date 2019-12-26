@@ -171,7 +171,8 @@ export default class Member extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style = {mainStyle.boundBtn_6}>
-                        <TouchableOpacity style = {{width:width/3, alignItems:'center', justifyContent:'center'}}>
+                        <TouchableOpacity style = {{width:width/3, alignItems:'center', justifyContent:'center'}}
+                            onPress={()=>this.props.navigation.navigate('RegisterScreen', {version: 'technical'})}>
                             <Image source = {require('../../assets/14.png')} style = {mainStyle.iconBtn}></Image>
                             <Text style = {mainStyle.redColor}>Trở thành TK </Text>
                             <Text style = {mainStyle.redColor}>kỹ thuật</Text>
@@ -183,6 +184,7 @@ export default class Member extends Component {
         );
     }
 }
+
 const {height, width} = Dimensions.get('window');
 const standarWidth = 360;
 const standarHeight = 592;

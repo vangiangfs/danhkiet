@@ -13,9 +13,7 @@ export default class TermsUse extends Component{
                 <HeaderBase page="home" title={'Điều khoản sử dụng'} navigation={navigation} />
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style = {mainStyle.body3}>
-                        <Text>Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào, 
-                            Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào, 
-                            Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào</Text>
+                        <Text>Chưa có dữ liệu...</Text>
                     </View>
                 </ScrollView>
             </Container>
