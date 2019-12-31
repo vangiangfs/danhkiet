@@ -9,7 +9,7 @@
       "android",
       "web"
     ],
-    "version": "1.1.2",
+    "version": "1.1.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -26,12 +26,12 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.danhkiet.app",
-      "buildNumber": "1.1.2",
+      "buildNumber": "1.1.4",
       "infoPlist": {
         "NSCameraUsageDescription": "This application uses the camera to take photos of people when taking attendance",
         "NSPhotoLibraryAddUsageDescription": "The application uses images to make avatar images",
         "NSPhotoLibraryUsageDescription": "The application uses images to make avatar images",
-        "NSLocationWhenInUseUsageDescription": "Allow application experiences to use your location"
+        "NSLocationWhenInUseUsageDescription": "Allow application experiences to use your location. Use location to find the nearest engineer."
       },
       "config": {
         "googleMapsApiKey": "AIzaSyAxnwYXjzmun8Cob-tALehR4rDLhtLg-O4"
@@ -39,7 +39,7 @@
     },
     "android": {
       "package": "com.danhkiet.app",
-      "versionCode": 13,
+      "versionCode": 14,
       "permissions": ["CAMERA", "WRITE_EXTERNAL_STORAGE", "READ_EXTERNAL_STORAGE", "ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
       "config": {
         "googleMaps": {

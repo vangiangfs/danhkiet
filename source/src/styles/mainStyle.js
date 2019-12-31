@@ -13,6 +13,9 @@ const marginBottom = 10/standarHeight * height;
 const padding = 10/standarWidth * width;
 const margin = 20/standarWidth * width;
 
+const heightBound = (height > heightBound)?(heightBound):height;
+const widthBound = (height == heightBound)?((height*720)/ 1280):width;
+
 export default StyleSheet.create({
     container:{
         flex:1,
@@ -24,8 +27,8 @@ export default StyleSheet.create({
         backgroundColor:'#f0f0f0',
     },
     logo_home:{
-        width:(((width*1280)/ 720) * 200) /1280, 
-        height:(((width *1280)/ 720) * 250) /1280,
+        width:(((width*1280) / 720) * 200) /1280, 
+        height:(((width*1280) / 720) * 250) /1280,
         resizeMode:'contain'
     },
     content_1:{     
@@ -574,15 +577,15 @@ export default StyleSheet.create({
         alignItems:'center'
     },
     oneLine_1:{
-        width:(((width*1280)/ 720) * 138) /1280,
+        width:((heightBound) * 138) /1280,
         justifyContent:'center'
     },
     oneLine_2:{
-        width:(((width*1280)/ 720) * 430) /1280,
+        width:((heightBound) * 430) /1280,
         flexDirection:'column'
     },
     oneLine_3:{
-        width:(((width*1280)/ 720) * 70) /1280,
+        width:((heightBound) * 70) /1280,
         justifyContent:'center'
     },
     lichSuGiaoDich:{
@@ -868,9 +871,9 @@ export default StyleSheet.create({
     },
     avatar:{
         position:'absolute',
-        height: (((width*1280)/ 720) * 500) /1280,
-        width: width/2,
-        top: (((width*1280)/ 720) * 362) /640 + (((width*1280)/ 720) * 110) /1280, left:0,
+        height: ((heightBound) * 500) /1280,
+        width: widthBound/2,
+        top: ((heightBound) * 362) /640 + ((heightBound) * 110) /1280, left:0,
         zIndex:1,
     },
     redColor:{
@@ -878,14 +881,14 @@ export default StyleSheet.create({
     },
     logoHome:{
         alignItems:'center',
-        position:'absolute', top:(((width*1280)/ 720) * 100) /1280, right:0,
-        height:  (((width*1280)/ 720) * 500) /1280,
+        position:'absolute', top:((heightBound) * 100) /1280, right:0,
+        height:  ((heightBound) * 500) /1280,
         width: width /2,
         zIndex:3
     },
     boundImg:{
-        width: width,
-        height: (width*1280)/ 720,
+        width: widthBound,
+        height: heightBound,
         position: 'absolute',
         bottom: 0,
         left:0 ,
@@ -893,9 +896,9 @@ export default StyleSheet.create({
         zIndex:2
     },
     boundBtn_1:{
-        marginTop: (((width*1280)/ 720) * 110) /1280,
-        height: (((width*1280)/ 720) * 362) /1280,
-        width: width / 2,
+        marginTop: ((heightBound) * 110) /1280,
+        height: ((heightBound) * 362) /1280,
+        width: widthBound / 2,
         alignItems:'center',
         justifyContent:'center',
         position:'absolute',
@@ -903,51 +906,55 @@ export default StyleSheet.create({
     },
     boundBtn_2:{
         position:'absolute',
-        height: (((width*1280)/ 720) * 362) /1280,
-        width: width / 2,
-        top:(((width*1280)/ 720) * 362) /2560 + (((width*1280)/ 720) * 110) /1280, left:(((width*1280)/ 720) * 360) /2560,
+        height: ((heightBound) * 362) /1280,
+        width: widthBound / 2,
+        top:((heightBound) * 362) /2560 + ((heightBound) * 110) /1280, left:((heightBound) * 360) /2560,
         alignItems:'center',
         justifyContent:'center',
     },
     boundBtn_3:{
         position:'absolute',
-        height: (((width*1280)/ 720) * 362) /1280,
-        width: width / 2,
-        top:(((width*1280)/ 720) * 362) /1280 + (((width*1280)/ 720) * 110) /1280, left:0,
+        height: ((heightBound) * 362) /1280,
+        width: widthBound / 2,
+        top:((heightBound) * 362) /1280 + ((heightBound) * 110) /1280, left:0,
         alignItems:'center',
         justifyContent:'center',
     },
     boundBtn_4:{
         position:'absolute',
-        height: (((width*1280)/ 720) * 362) /1280,
-        width: width / 2,
-        top:(((width*1280)/ 720) * 362) /1280 + (((width*1280)/ 720) * 110) /1280, left: (((width*1280)/ 720) * 360) /1280,
+        height: ((heightBound) * 362) /1280,
+        width: widthBound / 2,
+        top:((heightBound) * 362) /1280 + ((heightBound) * 110) /1280, left: ((heightBound) * 360) /1280,
         alignItems:'center',
         justifyContent:'center',
     },
     boundBtn_5:{
         position:'absolute',
-        height: (((width*1280)/ 720) * 362) /1280,
-        width: width / 2,
-        top: 3*(((width*1280)/ 720) * 362) /2560 + (((width*1280)/ 720) * 110) /1280, left:(((width*1280)/ 720) * 360) /2560,
+        height: ((heightBound) * 362) /1280,
+        width: widthBound / 2,
+        top: 3*((heightBound) * 362) /2560 + ((heightBound) * 110) /1280, left:((heightBound) * 360) /2560,
         alignItems:'center',
         justifyContent:'center',
     },
     boundBtn_6:{
         position:'absolute',
-        height: (((width*1280)/ 720) * 362) /1280,
-        width: width / 2,
-        top: (((width*1280)/ 720) * 355) /640 + (((width*1280)/ 720) * 110) /1280, left: (((width*1280)/ 720) * 360) /1280,
+        height: ((heightBound) * 362) /1280,
+        width: widthBound / 2,
+        top: ((heightBound) * 355) /640 + ((heightBound) * 110) /1280, left: ((heightBound) * 360) /1280,
         alignItems:'center',
         justifyContent:'center',
     },
     iconBtn:{
-        width:(((width*1280)/ 720) * 66)/1280, height:(((width*1280)/ 720) * 66)/1280, resizeMode:'contain'
+        width:((heightBound) * 66)/1280, height:((heightBound) * 66)/1280, resizeMode:'contain'
     },
     btnNameUnderAvatar:{
-        marginLeft:(((width*1280)/ 720) * 35) /1280, marginTop:5
+        marginLeft:((heightBound) * 35) /1280, marginTop:5
     },
     btnUnderName:{
-        flexDirection:'row',marginLeft:(((width*1280)/ 720) * 35) /1280, marginTop:5
+        flexDirection:'row',marginLeft:((heightBound) * 35) /1280, marginTop:5
+    },
+    avatarBound:{
+        marginTop: ((heightBound) * 69) /1280, 
+        marginLeft:((heightBound) * 89) /1280
     }
 });
