@@ -30,6 +30,10 @@ class AjaxControllersAjax extends FSControllers{
         $data['version'] = FSInput::get('version', 'guest', 'str');
         $data['created_time'] = date('Y-m-d H:i:s');
         $data['published'] = 1; 
+        if ($user->checkExitsMobile($data['mobile'])) {
+            $json['message'] = 'Số điện thoại này đã có người sử dụng';
+            goto json_encode;
+        }
         if ($user->checkExitsEmail($data['email'])) {
             $json['message'] = 'Email này đã có người sử dụng';
             goto json_encode;
@@ -334,6 +338,44 @@ class AjaxControllersAjax extends FSControllers{
 
         ob_end_clean();
         json_encode:
+        echo json_encode($json);
+    }
+
+    function do_forgot_pass() {
+        $json = array(
+            'error' => false,
+            'message' => ''
+        );
+        $user = $this->model->get_user();
+        if ($user && $user->email) {
+            $resetPass = $this->model->resetPass($user->id);
+            if (!$resetPass) {
+                $json['message'] = "Lỗi hệ thống khi reset Password";
+            }
+
+            $mailer = FSFactory::getClass('Email','mail');
+            $mailer -> isHTML(true);
+            $mailer -> setSender(array('sales@DanhKiet.vn', 'DanhKiet'));
+            $mailer -> addReplyTo('sales@DanhKiet.vn', 'GolfTop Vietnam');
+            $mailer -> AddAddress($user->email, $user->full_name);
+            $mailer -> setSubject("DanhKiet - Khôi phục mật khẩu"); 
+            
+            $body = '<div>Chào bạn!</div>';
+            $body .= '<div>Bạn đã sử dụng chức năng lấy lại mật khẩu tại GolfTop Vietnam</div>';
+            $body .= '<div>Mật khẩu đăng nhập mới của bạn là: <strong>'.$resetPass.'</strong>.</div>';
+            $body .= '<div>Ch&acirc;n th&agrave;nh c&#7843;m &#417;n!</div>';
+            
+            $mailer -> setBody($body);
+
+            if (!$mailer ->Send()) {
+                $json['message'] = "Lỗi hệ thống khi send mail";
+            }
+
+            $json['message'] = "Mật khẩu của bạn đã được thay đổi. Vui lòng kiểm tra email của bạn";
+        } else {
+            $json['message'] = "Email của bạn không tồn tại trong hệ thống. Vui lòng kiểm tra lại!";
+        }
+        ob_end_clean();
         echo json_encode($json);
     }
 }

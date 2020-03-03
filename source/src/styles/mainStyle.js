@@ -13,7 +13,7 @@ const marginBottom = 10/standarHeight * height;
 const padding = 10/standarWidth * width;
 const margin = 20/standarWidth * width;
 
-const heightBound = (height > heightBound)?(heightBound):height;
+const heightBound = (height > ((width*1280) / 720))?((width*1280) / 720):height;
 const widthBound = (height == heightBound)?((height*720)/ 1280):width;
 
 export default StyleSheet.create({

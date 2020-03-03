@@ -310,7 +310,7 @@ class FSUser{
     function checkExitsEmail($email){
         global $db;
     	$db->query("SELECT * FROM `".$this->tbStore."` 
-    	WHERE `email` = '$email'");
+    	WHERE `email` = '$email' AND `email` != ''");
         $user = $db->getObject();
     	if($user)
             return true;

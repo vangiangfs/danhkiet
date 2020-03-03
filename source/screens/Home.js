@@ -32,6 +32,10 @@ export default class Home extends Component{
 		this.props.navigation.navigate('LoginScreen', {version: this.state.version});
 	}
 
+	gotoForgot(){
+		this.props.navigation.navigate('ForgotPasswordScreen', {version: this.state.version});
+	}
+
 	render() {
 		return (
 			<ImageBackground source = {require('../assets/backgroundImage.png')} style = {mainStyle.container}>
@@ -69,7 +73,7 @@ export default class Home extends Component{
 						</TouchableOpacity>
 					</View>
 					<View style = {mainStyle.content_2c}>
-						<TouchableOpacity>
+						<TouchableOpacity onPress={()=>this.gotoForgot()}>
 							<Text style ={{color:'#ffffff'}}>Quên mật khẩu?</Text>
 						</TouchableOpacity>
 					</View>

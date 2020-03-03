@@ -14,7 +14,7 @@ import {
 
 import { Picker} from "native-base";
 
-import mainStyle from '../../src/styles/mainStyle';
+import mainStyle from '../../src/styles/Style';
 
 import DateTimePicker from "react-native-modal-datetime-picker";
 
@@ -74,13 +74,28 @@ export default class Register extends Component{
             return;
         }
 
+        if(mobile.length<10 || mobile.length>11){
+            Alert.alert('Thông báo', 'Số điện thoại của bạn không đúng định dạng.');
+            return;
+        }
+
         if(password == ''){
             Alert.alert('Thông báo', 'Bạn vui lòng nhập mật khẩu.');
             return;
         }
 
+        if(password.length < 8){
+            Alert.alert('Thông báo', 'Mật khẩu phải >=8 ký tự.');
+            return;
+        }
+
         if(re_password != password){
             Alert.alert('Thông báo', 'Nhập lại mật khẩu không đúng.');
+            return;
+        }
+
+        if(email!='' && !this.validateEmail(email)){
+            Alert.alert('Thông báo', 'Địa chỉ email không đúng.');
             return;
         }
 
@@ -91,11 +106,6 @@ export default class Register extends Component{
 
         if(last_name == ''){
             Alert.alert('Thông báo', 'Bạn vui lòng nhập tên.');
-            return;
-        }
-
-        if(address == ''){
-            Alert.alert('Thông báo', 'Bạn vui lòng nhập địa chỉ.');
             return;
         }
 
@@ -155,6 +165,15 @@ export default class Register extends Component{
         });
     }
 
+    validateEmail = (text) => {
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (reg.test(text) === false) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
 	render() {
 		return (
             <KeyboardAvoidingView keyboardVerticalOffset='0' behavior="padding" enabled>
@@ -178,7 +197,7 @@ export default class Register extends Component{
                     </View>
                     <View style = {mainStyle.body}>
                         <View style = {mainStyle.phone}>
-                            <Text style = {mainStyle.titleInput}>Số điện thoại</Text>
+                            <Text style = {mainStyle.titleInput}>Số điện thoại <Text style = {mainStyle.im}>*</Text></Text>
                             <TextInput style = {mainStyle.input100Percents} placeholder="Nhập vào số điện thoại" keyboardType='phone-pad'
                                 value={this.state.mobile}
                                 returnKeyType="next"
@@ -186,7 +205,7 @@ export default class Register extends Component{
                                 onChangeText={(mobile) => this.setState({ mobile })}/>
                         </View>
                         <View style = {mainStyle.password}>
-                            <Text style = {mainStyle.titleInput}>Mật Khẩu</Text>
+                            <Text style = {mainStyle.titleInput}>Mật Khẩu <Text style = {mainStyle.im}>*</Text></Text>
                             <TextInput style = {mainStyle.input100Percents} secureTextEntry = {true} placeholder="Nhập vào mật khẩu"
                                 value={this.state.password}
                                 returnKeyType="next"
@@ -213,7 +232,7 @@ export default class Register extends Component{
                         </View>
                         <View style = {mainStyle.leftAndRight}>
                             <View style = {mainStyle.left}>
-                                <Text style = {mainStyle.titleInput}>Họ</Text>
+                                <Text style = {mainStyle.titleInput}>Họ <Text style = {mainStyle.im}>*</Text></Text>
                                 <TextInput style = {mainStyle.input100Percents} placeholder="Họ"
                                     value={this.state.first_name}
                                     returnKeyType="next"
@@ -222,7 +241,7 @@ export default class Register extends Component{
                                     onChangeText={(first_name) => this.setState({ first_name })}/>
                             </View>
                             <View style = {mainStyle.right}>
-                                <Text style = {mainStyle.titleInput}>Tên</Text>
+                                <Text style = {mainStyle.titleInput}>Tên <Text style = {mainStyle.im}>*</Text></Text>
                                 <TextInput style = {mainStyle.input100Percents} placeholder="Tên"
                                     value={this.state.last_name}
                                     returnKeyType="next"
@@ -248,6 +267,7 @@ export default class Register extends Component{
                                     }>
                                     <Picker.Item label="Nam" value="male" />
                                     <Picker.Item label="Nữ" value="female" />
+                                    <Picker.Item label="Khác" value="other" />
                                 </Picker>
                             </View>
                         </View>

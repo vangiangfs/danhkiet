@@ -7,6 +7,7 @@ import Home from './../screens/Home';
 import Menu from './../screens/Menu';
 import Register from './../screens/member/Register';
 import RegisterSuccess from './../screens/member/RegisterSuccess';
+import ForgotPassword from './../screens/member/ForgotPassword';
 import Login from './../screens/member/Login';
 import Member from './../screens/member/Member';
 import MemberInfo from './../screens/member/MemberInfo';
@@ -20,12 +21,16 @@ import CalledList from './../screens/member/CalledList';
 import Search from './../screens/Search';
 import SearchResults from './../screens/SearchResults';
 
+
 export const DKStack = createStackNavigator({
     HomeScreen: {
         screen: Home
     },
     RegisterScreen: {
         screen: Register
+    },
+    ForgotPasswordScreen: {
+        screen: ForgotPassword
     },
     RegisterSuccessScreen: {
         screen: RegisterSuccess

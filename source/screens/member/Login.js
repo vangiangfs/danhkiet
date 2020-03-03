@@ -24,7 +24,8 @@ export default class Login extends Component{
             token: '',
             longitude: 105.850525,
             latitude: 21.032711,
-            errorMessage: ''
+            errorMessage: '',
+            error: 0
 		}
     }
 
@@ -76,7 +77,7 @@ export default class Login extends Component{
     }
 
     onSubmit(){
-        var {username, password, token, version, latitude, longitude } = this.state;
+        var {username, password, token, version, latitude, longitude, error } = this.state;
 
         if(username == ''){
             Alert.alert('Thông báo', 'Bạn vui lòng nhập email.');
@@ -94,10 +95,14 @@ export default class Login extends Component{
         .then((responseJson) => {
             if(responseJson.error == '0'){
                 saveStorage('user', JSON.stringify(responseJson.user));
-                // global.onSignIn();
                 this.props.navigation.navigate('MemberScreen');
             }else{
-                Alert.alert('Thông báo', responseJson.message);
+                error++;
+                this.setState({error, buttonText: 'ĐĂNG NHẬP'});
+                if(error > 3)
+                    Alert.alert('Thông báo', responseJson.message+'. Liên hệ 0936.310.222, để được hỗ trợ');
+                else
+                    Alert.alert('Thông báo', responseJson.message);
             }
         }).done();
     }
@@ -116,7 +121,7 @@ export default class Login extends Component{
                     <View style = {mainStyle.content_1c_login}>
                         <View style = {mainStyle.inputTaiKhoan}>
                             <Image source={require('../../assets/iconLogin1.png')} style = {mainStyle.imageTextInput}/>
-                            <TextInput style={mainStyle.textInputLoginClient} placeholder="Tài khoản/SĐT" keyboardType='phone-pad'
+                            <TextInput style={mainStyle.textInputLoginClient} placeholder="Email/Số điện thoại" keyboardType='phone-pad'
                                 returnKeyType="next"
                                 onSubmitEditing={() =>this.logPassword.focus()}
                                 onChangeText={(username) => this.setState({username})} />

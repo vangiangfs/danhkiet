@@ -118,4 +118,34 @@ class AjaxModelsAjax extends FSModels{
 		$db->query_limit($sql, $this->limit, $this->page);
 		return $db->getObjectList ();
 	}
+
+	function get_user(){
+        global $db;
+        $email = FSInput::get('email');
+        if (!$email)
+            return false;
+        $sql = "SELECT *
+                FROM fs_members
+				WHERE (email = '$email' AND email != '')";
+        $db->query($sql);
+        return $db->getObject();
+    }
+
+    function resetPass($userid){
+        $fstring = FSFactory::getClass('FSString', '', '../');
+        $newpass = $fstring->generateRandomString(8);
+        
+        $newpass_encode = md5($newpass);
+
+        global $db;
+        $sql = "UPDATE  fs_members SET 
+				password = '$newpass_encode'
+				WHERE id = $userid";
+        $db->query($sql);
+        $rows = $db->affected_rows();
+        if (!$rows) {
+            return false;
+        }
+        return $newpass;
+    }
 }                                                                                                                                      

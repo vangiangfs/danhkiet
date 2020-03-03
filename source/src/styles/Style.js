@@ -74,5 +74,8 @@ export default {
     fCalledItemThumb:{
         justifyContent:'center',
         width: 95
+    },
+    im:{
+        color: '#f42535'
     }
 }
