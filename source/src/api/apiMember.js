@@ -39,3 +39,11 @@ export function getWorksMeasure(tech_id, page){
     return fetch(url)
     .then(res => res.json());
 };
+
+export function getStaticsDetail(id){
+    let url;
+    url = global.BASE_URL+`/get_statics_detail.api?id=${id}`;
+    console.log(url);
+    return fetch(url)
+    .then(res => res.json());
+};

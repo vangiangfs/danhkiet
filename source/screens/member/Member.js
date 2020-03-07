@@ -157,7 +157,7 @@ export default class Member extends Component {
                     </View>
                     <View style = {mainStyle.boundBtn_4}>
                         <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}
-                            onPress={()=>this.props.navigation.navigate('TermsUseScreen')}>
+                            onPress={()=>this.props.navigation.navigate('TermsUseScreen', {id:1})}>
                             <Image source = {require('../../assets/12.png')} style = {mainStyle.iconBtn}></Image>
                             <Text style = {mainStyle.redColor}>Điều khoản</Text>
                             <Text style = {mainStyle.redColor}>sử dụng</Text>

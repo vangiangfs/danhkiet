@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "source"
+		},
+		{
+			"path": "web"
+		},
+		{
+			"path": "jsx"
+		}
+	],
+	"settings": {}
+}

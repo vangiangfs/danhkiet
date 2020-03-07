@@ -10,6 +10,7 @@ import RegisterSuccess from './../screens/member/RegisterSuccess';
 import ForgotPassword from './../screens/member/ForgotPassword';
 import Login from './../screens/member/Login';
 import Member from './../screens/member/Member';
+import Home2 from './../screens/member/Home2';
 import MemberInfo from './../screens/member/MemberInfo';
 import TransactionHistories from './../screens/member/TransactionHistories';
 import ChangePassword from './../screens/member/ChangePassword';
@@ -25,6 +26,9 @@ import SearchResults from './../screens/SearchResults';
 export const DKStack = createStackNavigator({
     HomeScreen: {
         screen: Home
+    },
+    Home2Screen: {
+        screen: Home2
     },
     RegisterScreen: {
         screen: Register
@@ -73,7 +77,7 @@ export const DKStack = createStackNavigator({
     }
 }, {
     headerMode: 'none',
-    initialRouteName: 'HomeScreen',
+    initialRouteName: 'Home2Screen',
     navigationOptions: {
         headerStyle: {
             shadowOpacity: 0,

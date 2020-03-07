@@ -378,4 +378,27 @@ class AjaxControllersAjax extends FSControllers{
         ob_end_clean();
         echo json_encode($json);
     }
+
+    function get_statics_detail(){
+        ob_start();
+        $json = array(
+            'error' => true,
+            'detail' => array(),
+        );
+
+        $id = FSInput::get('id');
+        $detail = $this->model->get_record('id = '.intval($id) ,'fs_statics');
+        if($detail){
+            $json['error'] = false;
+            $detail->title = $detail->title;
+            $detail->content = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="vi-vn" lang="vi-vn">
+            <head><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" type="text/css" media="screen" href="http://kidsgo.phongcachso.com/templates/default/css/app.css" /></head><body><div class="container">'. str_replace("/upload_images/",URL_ROOT."upload_images/", htmlspecialchars_decode($detail->content)).'</div></body></html>';
+            $json['detail'] = $detail;
+        }
+
+        ob_end_clean();
+        json_encode:
+        echo json_encode($json);
+    }
 }

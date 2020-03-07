@@ -80,11 +80,11 @@ class StaticsModelsStatics extends FSModels
             Errors::_('Bạn phải chọn danh mục');
             return;
         }
-        $cat = $this->get_record_by_id($category_id, 'fs_news_categories');
+        /*$cat = $this->get_record_by_id($category_id, 'fs_statics_categories');
         $row['category_id_wrapper'] = $cat->list_parents;
         $row['category_alias_wrapper'] = $cat->alias_wrapper;
         $row['category_name'] = $cat->name;
-        $row['category_alias'] = $cat->alias;
+        $row['category_alias'] = $cat->alias;*/
         $row['content'] = htmlspecialchars_decode(FSInput::get('content'));
         return parent::save($row);
     }
@@ -138,7 +138,7 @@ class StaticsModelsStatics extends FSModels
                     // category
                     if ($field_item == 'category_id')
                     {
-                        $cat = $this->get_record_by_id($field_value_new, 'fs_news_categories');
+                        $cat = $this->get_record_by_id($field_value_new, 'fs_statics_categories');
                         $row['category_id_wrapper'] = $cat->list_parents;
                         $row['category_alias_wrapper'] = $cat->alias_wrapper;
                         $row['category_name'] = $cat->name;
