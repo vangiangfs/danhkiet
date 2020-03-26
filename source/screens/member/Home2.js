@@ -79,14 +79,14 @@ export default class Home2 extends Component {
                         <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}
                             onPress={()=>this.props.navigation.navigate('SearchScreen')}>
                             <Image source = {require('../../assets/search.png')} style = {mainStyle.iconBtn}></Image>
-                            <Text style = {mainStyle.redColor}>Tìm kiếm</Text>
-                            <Text style = {mainStyle.redColor}>dịch vụ</Text>
+                            <Text style = {mainStyle.redColor}>Dịch vu</Text>
+                            <Text style = {mainStyle.redColor}>đo đạc</Text>
                         </TouchableOpacity>
                     </View>
                     <View style = {mainStyle.boundBtn_2}>
                         <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}
                             onPress={()=>this.props.navigation.navigate('TermsUseScreen', {id:2})}>
-                            <Image source = {require('../../assets/12.png')} style = {mainStyle.iconBtn}></Image>
+                            <Image source = {require('../../assets/maytracdia.png')} style = {mainStyle.iconBtn}></Image>
                             <Text style = {mainStyle.redColor}>Máy</Text>
                             <Text style = {mainStyle.redColor}>trắc điạ</Text>
                         </TouchableOpacity>
@@ -94,7 +94,7 @@ export default class Home2 extends Component {
                     <View style = {mainStyle.boundBtn_3}>
                         <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}
                             onPress={()=>this.props.navigation.navigate('TermsUseScreen', {id:3})}>
-                            <Image source = {require('../../assets/12.png')} style = {mainStyle.iconBtn}></Image>
+                            <Image source = {require('../../assets/phukien.png')} style = {mainStyle.iconBtn}></Image>
                             <Text style = {mainStyle.redColor}>Phụ kiên</Text>
                             <Text style = {mainStyle.redColor}>trắc điạ</Text>
                         </TouchableOpacity>
@@ -102,7 +102,7 @@ export default class Home2 extends Component {
                     <View style = {mainStyle.boundBtn_4}>
                         <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}
                             onPress={()=>this.props.navigation.navigate('TermsUseScreen', {id:4})}>
-                            <Image source = {require('../../assets/12.png')} style = {mainStyle.iconBtn}></Image>
+                            <Image source = {require('../../assets/phammem.png')} style = {mainStyle.iconBtn}></Image>
                             <Text style = {mainStyle.redColor}>Phần mềm</Text>
                             <Text style = {mainStyle.redColor}>đo đạc</Text>
                         </TouchableOpacity>
@@ -110,7 +110,7 @@ export default class Home2 extends Component {
                     <View style = {mainStyle.boundBtn_5}>
                         <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}
                             onPress={()=>this.props.navigation.navigate('TermsUseScreen', {id:5})}>
-                            <Image source = {require('../../assets/12.png')} style = {mainStyle.iconBtn}></Image>
+                            <Image source = {require('../../assets/dichvukhac.png')} style = {mainStyle.iconBtn}></Image>
                             <Text style = {mainStyle.redColor}>Dịch vụ</Text>
                             <Text style = {mainStyle.redColor}>Khác</Text>
                         </TouchableOpacity>

@@ -248,6 +248,30 @@ class AjaxControllersAjax extends FSControllers{
         echo json_encode($json);
     }
 
+    function get_services(){
+        ob_start();
+        $json = array(
+            'error' => true,
+            'list' => array(),
+        );
+        $list = $this->model->get_services();
+        if($list){
+            $json['error'] = false;
+            
+            foreach($list as $item){
+                $json['list'][] = array(
+                    'id' => $item->id,
+                    'name' => $item->name,
+                    'checked' => false
+                );
+            }
+        }
+
+        ob_end_clean();
+        json_encode:
+        echo json_encode($json);
+    }
+    
     function get_search_results(){
         ob_start();
         $json = array(

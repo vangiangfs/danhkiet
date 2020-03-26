@@ -8,7 +8,7 @@ import {getStorage, saveStorage} from '../src/api/storage';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 // import { MapView, Marker } from "expo";
-import {getCountries, getCities, getDistricts, getWards} from '../src/api/apiGlobal';
+import {getCountries, getCities, getDistricts, getWards, getServices} from '../src/api/apiGlobal';
 
 export default class Search extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -19,7 +19,7 @@ export default class Search extends Component {
         super(props);
 
         this.state = {
-            loading: true,
+            loading: false,
             user: {
                 version: 'guest',
                 id: 0,
@@ -29,23 +29,36 @@ export default class Search extends Component {
             countries: [],
             country_id: '66',
             cities: [],
-            city_id: 0,
+            city_id: '0',
             districts: [],
-            district_id: 0,
+            district_id: '0',
             wards: [],
-            ward_id: 0,
+            ward_id: '0',
             fullname: '',
             mobile: '',
             summary: '',
+            service_id: '0',
+            services: []
 		}
 		
-		getStorage('user')
+		/*getStorage('user')
         .then(user => { 
             if(user != ''){
                 let arrUser = JSON.parse(user);
                 this.setState({user:arrUser, loading: false});
             }else
                 this.props.navigation.navigate('HomeScreen');
+        });*/
+
+        getServices()
+        .then(resJSON => {
+			const {list, error} = resJSON;
+			if(error == false){	
+				this.setState({
+                    services: list ,
+                    service_id: '0'
+				});
+			}
         });
 
         getCountries()
@@ -149,7 +162,7 @@ export default class Search extends Component {
 
         return(
             <Container>
-                <HeaderBase page="home" title={'Tìm kiếm dịch vụ'} navigation={navigation} />
+                <HeaderBase page="home" title={'Đặt dịch vụ'} navigation={navigation} />
                 <KeyboardAvoidingView keyboardVerticalOffset='0' behavior="padding" enabled>
                     <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor:'#f1f1f1'}}>
                         <View style = {mainStyle.content1_body4}>
@@ -260,6 +273,22 @@ export default class Search extends Component {
                                     onSubmitEditing={() =>this.frmSummary.focus()}
                                     onChangeText={(mobile) => this.setState({ mobile })}/>
                             </View>
+                            <View style = {mainStyle.fContainInput}>
+                                <View style={mainStyle.fContainInputIcon}>
+                                    <Icon type="FontAwesome5" name="th-list" style={{color:'#BBBBBB', fontSize: 18}} />
+                                </View>
+                                <Picker
+                                    mode="dropdown"
+                                    style={mainStyle.fContainPicker}
+                                    selectedValue={this.state.service_id}
+                                    onValueChange={(service_id) => this.setState({service_id})}
+                                    >
+                                    <Picker.Item label="Dịch vụ cần đo" value="0" />
+                                    {this.state.services.map((e)=>(
+                                        <Picker.Item key={e.id} label={e.name} value={e.id} />
+                                    ))}
+                                </Picker>
+                            </View>
                             <View style = {mainStyle.textArea}>
                                 <TextInput style={{height:150,textAlign:'center'}}
                                     underlineColorAndroid="transparent"
@@ -277,11 +306,13 @@ export default class Search extends Component {
                         <View style ={mainStyle.content4_body4}>
                             <TouchableOpacity style = {[mainStyle.buttonYes_TimKiem, {marginBottom: 30}]}
                                 onPress={() => this.onSubmit()}>
-                                <Text style ={mainStyle.textButtonDangKy}>OK</Text>
+                                <Text style ={mainStyle.textButtonDangKy}>Xác nhận đặt dịch vụ</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style ={mainStyle.content3_body4}>
-                            <Text style ={{fontSize:10,textAlign:'center'}}>ĐÀO TẠO KỸ THUẬT TRẮC ĐỊA CHUYÊN NGHIỆP CHO CÁC CÔNG TY</Text>
+                        <View style={{alignItems: 'center'}}>
+                            <TouchableOpacity style ={mainStyle.content3_body4}>
+                                <Text style ={{fontSize:16,textAlign:'center'}}>Back</Text>
+                            </TouchableOpacity>
                         </View>
                     </ScrollView>
                 </KeyboardAvoidingView>

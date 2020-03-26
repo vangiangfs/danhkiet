@@ -8,6 +8,14 @@ export function getCountries(){
     .then(res => res.json());
 };
 
+export function getServices(){
+    let url;
+    url = global.BASE_URL+`/get_services.api`;
+    console.log(url);
+    return fetch(url)
+    .then(res => res.json());
+};
+
 export function getCities(country_id){
     let url;
     url = global.BASE_URL+`/get_cities.api?country_id=${country_id}`;

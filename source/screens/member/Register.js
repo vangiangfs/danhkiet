@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import { Icon } from "native-base";
 import {
 	View,
 	Text,
@@ -19,7 +19,7 @@ import mainStyle from '../../src/styles/Style';
 import DateTimePicker from "react-native-modal-datetime-picker";
 
 import {submitRegister} from '../../src/api/apiMember';
-import {getCities, getDistricts} from '../../src/api/apiGlobal';
+import {getCities, getDistricts, getServices} from '../../src/api/apiGlobal';
 
 export default class Register extends Component{
 
@@ -47,7 +47,8 @@ export default class Register extends Component{
             machine_type: '',
             experience: '',
             work_done: '',
-            country_id: 66
+            country_id: 66,
+            services: []
 		}
     }
 
@@ -61,6 +62,16 @@ export default class Register extends Component{
 			if(error == false){	
 				this.setState({
 					cities: list 
+				});
+			}
+        });
+
+        getServices()
+        .then(resJSON => {
+			const {list, error} = resJSON;
+			if(error == false){	
+				this.setState({
+                    services: list ,
 				});
 			}
         });
@@ -174,6 +185,12 @@ export default class Register extends Component{
         }
     }
 
+    setServices(index){
+        const {services} = this.state;
+        services[index].checked = !services[index].checked;
+        this.setState({services});
+    }
+
 	render() {
 		return (
             <KeyboardAvoidingView keyboardVerticalOffset='0' behavior="padding" enabled>
@@ -196,6 +213,15 @@ export default class Register extends Component{
                         </View>
                     </View>
                     <View style = {mainStyle.body}>
+                        <View style = {mainStyle.phone}>
+                            <Text style = {mainStyle.titleInput}>Dịch vụ của bạn <Text style = {mainStyle.im}>*</Text></Text>
+                            {this.state.services.map((e, index)=>(
+                                <TouchableOpacity key={e.id} style={{marginTop: 3, flexDirection: 'row', alignItems: 'center'}} onPress={() => this.setServices(index)}>
+                                    {this.state.services[index].checked?<Icon type="MaterialCommunityIcons" name="check-box-outline" style={{color:'#BBBBBB', fontSize: 20}} />:<Icon type="MaterialCommunityIcons" name="checkbox-blank-outline" style={{color:'#BBBBBB', fontSize: 20}} />}
+                                    <Text style ={mainStyle.textServices}>{' '+e.name}</Text>
+                                </TouchableOpacity> 
+                            ))}
+                        </View>
                         <View style = {mainStyle.phone}>
                             <Text style = {mainStyle.titleInput}>Số điện thoại <Text style = {mainStyle.im}>*</Text></Text>
                             <TextInput style = {mainStyle.input100Percents} placeholder="Nhập vào số điện thoại" keyboardType='phone-pad'

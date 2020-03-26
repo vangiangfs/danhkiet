@@ -475,6 +475,7 @@ export default StyleSheet.create({
         paddingRight:10,
         justifyContent:'center',
         marginBottom:20,
+        width: '20%'
     },
     content4_body4:{
         marginTop:10,
@@ -538,11 +539,12 @@ export default StyleSheet.create({
     },
     buttonYes_TimKiem:{
         justifyContent:'center',
-        width:'30%',
         backgroundColor:'#f42535',
         alignItems:'center',
         padding:10,
         borderRadius:30,
+        paddingLeft: 20,
+        paddingRight: 20
     },
     map2:{
         width:'100%',
@@ -956,5 +958,9 @@ export default StyleSheet.create({
     avatarBound:{
         marginTop: ((heightBound) * 69) /1280, 
         marginLeft:((heightBound) * 89) /1280
+    },
+    textServices:{
+        color:'#999999',
+        fontSize:13,
     }
 });

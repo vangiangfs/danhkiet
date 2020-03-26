@@ -34,6 +34,16 @@ class AjaxModelsAjax extends FSModels{
 		$db->query ( $sql );
 		return $db->getObjectList ();
 	}
+
+	function get_services(){
+        global $db;
+		$where = ' 1 = 1 ';
+		$sql = "SELECT id, name FROM fs_services 
+				WHERE " . $where . "
+				ORDER BY `id`";
+		$db->query ( $sql );
+		return $db->getObjectList ();
+	}
 	
 	function get_wards($district_id = 0){
         global $db;
