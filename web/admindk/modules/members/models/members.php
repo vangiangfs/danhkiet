@@ -101,7 +101,7 @@ class MembersModelsMembers extends FSModels
 //				}
 //			}
 
-        $query = " SELECT *
+        $query = " SELECT *, CONCAT(first_name, ' ', last_name) AS fullname
                       FROM
                        fs_members AS a
                      $where

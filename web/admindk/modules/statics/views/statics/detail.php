@@ -12,7 +12,7 @@ $this -> dt_form_begin(0);
         <li><a href="#fragment-1"><span><?php echo FSText::_("Thông tin cơ bản"); ?></span></a></li>
     </ul>
     <div id="fragment-1">
-        <table cellspacing="1" class="admintable">
+        <table cellspacing="1" class="admintable" style="width: 100%">
         <?php
         //TemplateHelper::dt_edit_selectbox(FSText::_('Categories'),'category_id',@$data -> category_id,0,$categories,$field_value = 'id', $field_label='treename',$size = 10,0);
         TemplateHelper::dt_edit_text(FSText :: _('Title'),'title',@$data -> title);

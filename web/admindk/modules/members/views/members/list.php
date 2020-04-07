@@ -47,7 +47,7 @@ $toolbar->addButton('unpublished',FSText :: _('Unpublished'),FSText :: _('You mu
 						<input type="checkbox" onclick="checkAll(<?php echo count($list); ?>);" value="" name="toggle">
 					</th>
 					<th class="title">
-						<?php echo  TemplateHelper::orderTable(FSText::_('Họ tên'), 'a.username',$sort_field,$sort_direct) ; ?>
+						<?php echo  TemplateHelper::orderTable(FSText::_('Họ tên'), 'a.last_name',$sort_field,$sort_direct) ; ?>
 					</th>
                     <th class="title" >
                         <?php echo  TemplateHelper::orderTable(FSText::_('Email'), 'a.email',$sort_field,$sort_direct) ; ?>
@@ -55,7 +55,9 @@ $toolbar->addButton('unpublished',FSText :: _('Unpublished'),FSText :: _('You mu
                     <th class="title" >
                         <?php echo  TemplateHelper::orderTable(FSText::_('Mobile'), 'a.mobile',$sort_field,$sort_direct) ; ?>
                     </th>
-
+					<th class="title">
+						<?php echo  TemplateHelper::orderTable(FSText::_('Loại thành viên'), 'a.version',$sort_field,$sort_direct) ; ?>
+					</th>
 					<th class="title">
 						<?php echo  TemplateHelper::orderTable(FSText::_('Ngày tạo'), 'a.created_time',$sort_field,$sort_direct) ; ?>
 					</th>
@@ -79,9 +81,12 @@ $toolbar->addButton('unpublished',FSText :: _('Unpublished'),FSText :: _('You mu
 								<td>
 									<input type="checkbox" onclick="isChecked(this.checked);" value="<?php echo $row->id; ?>"  name="id[]" id="cb<?php echo $i; ?>">
 								</td>
-                                <td style="text-align: left"><a href='<?php echo $link_view;?>' ><?php echo $row->poster_name; ?></a></td>
+                                <td style="text-align: left"><a href='<?php echo $link_view;?>' ><?php echo $row->fullname; ?></a></td>
 								<td style="text-align: left"><a href='<?php echo $link_view;?>' ><?php echo $row->email; ?></a></td>
-                                <td style="text-align: left;"><a style="<?php if($row->duplicate) echo 'color: red;' ?>" href='<?php echo $link_view;?>' ><?php echo $row->poster_mobile; ?></a></td>
+                                <td style="text-align: left;"><a style="<?php if($row->duplicate) echo 'color: red;' ?>" href='<?php echo $link_view;?>' ><?php echo $row->mobile; ?></a></td>
+								<td style="text-align: left">
+									<?php if($row->version=='guest') echo 'Khách hàng'; else echo 'Kỹ thuật viên'; ?>
+								</td>
 								<td><?php echo date("m-d-Y",strtotime($row->created_time)); ?></td>
 								<td><?php echo TemplateHelper::published("cb".($i),$row->published?"unpublished":"published"); ?></td>
 								<td> <a href='<?php echo $link_view; ?>' >Edit</a></td>
