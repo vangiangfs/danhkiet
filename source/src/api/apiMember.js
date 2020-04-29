@@ -47,3 +47,19 @@ export function getStaticsDetail(id){
     return fetch(url)
     .then(res => res.json());
 };
+
+export function requestVIP (member_id) {
+    let url;
+    url = global.BASE_URL+`/request_vip.api?member_id=${member_id}`;
+    console.log(url);
+    return fetch(url)
+    .then(res => res.json());
+};
+
+export function getMemberInfo (id) {
+    let url;
+    url = global.BASE_URL+`/get_member_info.api?id=${id}`;
+    console.log(url);
+    return fetch(url)
+    .then(res => res.json());
+};

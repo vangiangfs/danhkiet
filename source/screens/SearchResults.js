@@ -173,6 +173,7 @@ export default class SearchResults extends Component {
                                     <TouchableOpacity style={mainStyle.fSRNameBtn} 
                                         onPress= { () => this.callTechnical(item.id, item.mobile)}>
                                         <Text style={mainStyle.fSRNameText}>{item.name}</Text>
+                                        {item.vip=='1'?<Text style={mainStyle.fSRNameVip}>Đã xác thực</Text>:null}
                                     </TouchableOpacity>    
                                 </View>
                                 <View style = {mainStyle.oneLine_right}>

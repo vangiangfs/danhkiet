@@ -138,6 +138,7 @@ class AjaxControllersAjax extends FSControllers{
                 'machine_type' => $user->userInfo->machine_type, 
                 'experience' => $user->userInfo->experience, 
                 'work_done' => $user->userInfo->work_done,
+                'vip' => $user->userInfo->vip,
             );
 
             $user->updateUser(array(
@@ -291,6 +292,7 @@ class AjaxControllersAjax extends FSControllers{
                     'distance' => '...',
                     'latitude' => $item->latitude,
                     'longitude' => $item->longitude,
+                    'vip' => $item->vip,
                 );
             }
         }
@@ -425,4 +427,62 @@ class AjaxControllersAjax extends FSControllers{
         json_encode:
         echo json_encode($json);
     }
+
+    function request_vip(){
+        global $user;
+        $json = array(
+            'error' => 1,
+            'message' => 'Có lỗi trong quá trình xử lý, vui lòng kiểm tra lại kết nối!'
+        );
+
+        $id = FSInput::get('member_id', 0);
+        $data = array();
+        $data['vip'] = 2;
+        $user->updateUser($data, $id);
+
+        if ($id) {
+            $json['error'] = 0;
+            $json['message'] = 'Bạn đã gửi yêu cầu VIP thành công!';
+        }
+
+        json_encode:
+        echo json_encode($json);
+    }
+
+    function get_member_info(){
+        global $user;
+        $json = array(
+            'error' => 1,
+            'user' => array()
+        );
+        $id = FSInput::get('id', 0);
+        if ($id) {
+            $user->loadUser($id);
+            $json['error'] = 0;
+            $json['user'] = array(
+                'id' => $user->userInfo->id,
+                'email' => $user->userInfo->email,
+                'mobile' => $user->userInfo->mobile,
+                'version' => $user->userInfo->version,
+                'first_name' => $user->userInfo->first_name,
+                'last_name' => $user->userInfo->last_name,
+                'longitude' => $longitude,
+                'latitude' => $latitude,
+                'gender' => $user->userInfo->gender, 
+                'birthday' => $user->userInfo->birthday, 
+                'city_id' => $user->userInfo->city_id, 
+                'district_id' => $user->userInfo->district_id, 
+                'address' => $user->userInfo->address, 
+                'service_charge' => $user->userInfo->service_charge, 
+                'machine_type' => $user->userInfo->machine_type, 
+                'experience' => $user->userInfo->experience, 
+                'work_done' => $user->userInfo->work_done,
+                'vip' => $user->userInfo->vip,
+            );
+        }
+
+        json_encode:
+        echo json_encode($json);
+    }
+
 }

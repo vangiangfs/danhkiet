@@ -191,6 +191,10 @@ export default class Register extends Component{
         this.setState({services});
     }
 
+    gotoLogin(){
+		this.props.navigation.navigate('LoginScreen', {version: this.state.version});
+    }
+    
 	render() {
 		return (
             <KeyboardAvoidingView keyboardVerticalOffset='0' behavior="padding" enabled>
@@ -385,6 +389,13 @@ export default class Register extends Component{
                         <TouchableOpacity style = {mainStyle.buttonDangKy} 
                             onPress={() =>this.onSubmit()}>
                             <Text style ={mainStyle.textButtonDangKy}>{this.state.buttonText}</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <View style = {[mainStyle.footer, {marginTop: 12}]}>
+                        <TouchableOpacity style = {mainStyle.buttonDangKy} 
+                            onPress={() =>this.gotoLogin()}>
+                            <Text style ={mainStyle.textButtonDangKy}>hoặc Đăng Nhập</Text>
                         </TouchableOpacity>
                     </View>
                     <DateTimePicker

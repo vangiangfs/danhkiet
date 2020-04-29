@@ -21,7 +21,7 @@ import AccountExtension from './../screens/member/AccountExtension';
 import CalledList from './../screens/member/CalledList';
 import Search from './../screens/Search';
 import SearchResults from './../screens/SearchResults';
-
+import RequestVIP from './../screens/member/RequestVIP';
 
 export const DKStack = createStackNavigator({
     HomeScreen: {
@@ -74,10 +74,13 @@ export const DKStack = createStackNavigator({
     },
     SearchResultsScreen: {
         screen: SearchResults
+    },
+    RequestVIPScreen: {
+        screen: RequestVIP
     }
 }, {
     headerMode: 'none',
-    initialRouteName: 'Home2Screen',
+    initialRouteName: 'HomeScreen',
     navigationOptions: {
         headerStyle: {
             shadowOpacity: 0,

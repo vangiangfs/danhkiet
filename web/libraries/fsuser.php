@@ -255,7 +255,7 @@ class FSUser{
     * @param string $userID
     * @return bool
     */
-    private function loadUser($userID){
+    function loadUser($userID){
         global $db;
         $res = $db->query("SELECT * FROM `".$this->tbStore."` WHERE `id` = '".$this->escape($userID)."' LIMIT 1");
         $user = $db->getObject();

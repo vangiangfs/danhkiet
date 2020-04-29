@@ -76,6 +76,10 @@ export default class Login extends Component{
         this.setState({version});
     }
 
+    gotoForgot(){
+		this.props.navigation.navigate('ForgotPasswordScreen', {version: this.state.version});
+    }
+    
     onSubmit(){
         var {username, password, token, version, latitude, longitude, error } = this.state;
 
@@ -155,6 +159,11 @@ export default class Login extends Component{
                             <Text style ={{color:'#ffffff'}}>{this.state.version=='guest'?'Bạn là Kỹ thuật':'Bạn là Khách Hàng'}</Text>
                         </TouchableOpacity>
                     </View>
+                    <View style = {mainStyle.content_2c}>
+						<TouchableOpacity onPress={()=>this.gotoForgot()}>
+							<Text style ={{color:'#ffffff'}}>Quên mật khẩu?</Text>
+						</TouchableOpacity>
+					</View>
                 </View>
             </ImageBackground>
         );

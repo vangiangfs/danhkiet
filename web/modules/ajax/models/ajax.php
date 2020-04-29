@@ -77,7 +77,7 @@ class AjaxModelsAjax extends FSModels{
 
 		$sql = "SELECT * FROM fs_members 
 				WHERE " . $where . "
-				ORDER BY id DESC";
+				ORDER BY vip DESC, id DESC";
 		$db->query_limit($sql, $this->limit, $this->page);
 		return $db->getObjectList ();
 	}

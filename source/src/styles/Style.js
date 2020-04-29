@@ -71,6 +71,12 @@ export default {
         textAlign:'center',
         marginLeft:2
     },
+    fSRNameVip:{
+        fontSize: 14,
+        textAlign:'center',
+        marginLeft: 10,
+        color: '#f42535'
+    },
     fCalledItemThumb:{
         justifyContent:'center',
         width: 95

@@ -48,7 +48,8 @@ export default class MemberInfo extends Component{
             work_done: '',
             country_id: 66,
             loading: true,
-            user: []
+            user: [], 
+            vip: 0
         }
         
         getStorage('user')
@@ -73,6 +74,7 @@ export default class MemberInfo extends Component{
                     machine_type: arrUser.machine_type,
                     experience: arrUser.experience,
                     work_done: arrUser.work_done,
+                    vip: arrUser.vip,
                 });
             }else
                 this.props.navigation.navigate('HomeScreen');
@@ -175,6 +177,10 @@ export default class MemberInfo extends Component{
         });
     }
 
+    requestVIP(){
+        this.props.navigation.navigate('RequestVIPScreen', {user_id: this.state.user.id});
+    }
+
 	render() {
 		return (
             <KeyboardAvoidingView keyboardVerticalOffset='0' behavior="padding" enabled>
@@ -202,6 +208,13 @@ export default class MemberInfo extends Component{
                         <View style ={mainStyle.name_taiKhoan}>
                             <Text style = {{textAlign:'center',fontWeight:'bold',fontSize:text16}}>{this.state.first_name+' '+this.state.last_name}</Text>
                         </View>
+                        {this.state.version=='technical'?<View style = {[mainStyle.phone, {flexDirection: 'row', alignItems: 'center'}]}>
+                            <Text style = {[mainStyle.titleInput, {fontWeight: 'bold', color: 'red'}]}>{this.state.vip=='1'?'Thành viên VIP':this.state.vip=='2'?'Yêu cầu cấp VIP':'Thành viên thường'}</Text>
+                            {this.state.vip=='0'?
+                            <TouchableOpacity onPress={()=>this.requestVIP()} style = {{padding:7, borderRadius:7, backgroundColor:'#f8d34e', alignItems:'center', marginLeft: 15}}>
+                                <Text style ={{textAlign:'center', fontSize:16, fontWeight: 'bold'}}>VIP</Text>
+                            </TouchableOpacity>:null}
+                        </View>:null}
                         <View style = {mainStyle.phone}>
                             <Text style = {mainStyle.titleInput}>Số điện thoại</Text>
                             <TextInput style = {[mainStyle.input100Percents, {color: '#999999'}]} placeholder="Nhập vào số điện thoại" keyboardType='phone-pad'

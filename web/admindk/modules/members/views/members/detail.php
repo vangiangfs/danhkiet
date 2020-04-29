@@ -60,8 +60,16 @@ $arrVersion = array(
                     </select>
                 </td>
             </tr>
+            <tr>
+                <td class="label key"><span><?php echo FSText::_('Loại')?></span></td>
+                <td class="value">
+                    <input type="radio" name="vip" id="vip0" class='edit_pass'  value="0" <?php if(@$data->vip==0) echo 'checked="checked"'; ?>/> Thường
+                    <input type="radio" name="vip" id="vip2" class='edit_pass'  value="2" <?php if(@$data->vip==2) echo 'checked="checked"'; ?>/> Yêu cầu VIP
+                    <input type="radio" name="vip" id="vip1" class='edit_pass' value="1" <?php if(@$data->vip==1) echo 'checked="checked"'; ?> /> VIP
+                </td>
+            </tr>
             <?php
-            TemplateHelper::dt_checkbox(FSText::_('Verify'), 'verify', @$data -> verify, 0);
+            //TemplateHelper::dt_checkbox(FSText::_('Verify'), 'verify', @$data -> verify, 0);
             TemplateHelper::dt_checkbox(FSText::_('Published'), 'published', @$data -> published, 1);
             ?>
             <tr class='password_area'>

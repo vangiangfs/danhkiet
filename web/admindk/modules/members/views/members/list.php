@@ -58,6 +58,9 @@ $toolbar->addButton('unpublished',FSText :: _('Unpublished'),FSText :: _('You mu
 					<th class="title">
 						<?php echo  TemplateHelper::orderTable(FSText::_('Loại thành viên'), 'a.version',$sort_field,$sort_direct) ; ?>
 					</th>
+					<th class="title" >
+                        <?php echo  TemplateHelper::orderTable(FSText::_('Loại'), 'a.vip',$sort_field,$sort_direct) ; ?>
+                    </th>
 					<th class="title">
 						<?php echo  TemplateHelper::orderTable(FSText::_('Ngày tạo'), 'a.created_time',$sort_field,$sort_direct) ; ?>
 					</th>
@@ -87,6 +90,9 @@ $toolbar->addButton('unpublished',FSText :: _('Unpublished'),FSText :: _('You mu
 								<td style="text-align: left">
 									<?php if($row->version=='guest') echo 'Khách hàng'; else echo 'Kỹ thuật viên'; ?>
 								</td>
+								<td style="text-align: left"><a href='<?php echo $link_view;?>' >
+									<?php if($row->vip==1) echo 'VIP'; elseif($row->vip==2) echo '<span style="color: red;">Yêu cầu VIP</span>'; else echo 'Thường'; ?>
+								</a></td>
 								<td><?php echo date("m-d-Y",strtotime($row->created_time)); ?></td>
 								<td><?php echo TemplateHelper::published("cb".($i),$row->published?"unpublished":"published"); ?></td>
 								<td> <a href='<?php echo $link_view; ?>' >Edit</a></td>

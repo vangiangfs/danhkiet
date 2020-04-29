@@ -4,6 +4,7 @@ import {View,Text,ImageBackground,Image,TouchableOpacity,Dimensions}from 'react-
 import mainStyle from '../../src/styles/mainStyle';
 
 import {getStorage, saveStorage} from '../../src/api/storage';
+import {Icon} from "native-base";
 
 export default class Home2 extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -32,6 +33,12 @@ export default class Home2 extends Component {
         });
     }
 
+    onLogout() {
+        saveStorage('user', '');
+        this.props.navigation.goBack();
+        this.props.navigation.navigate('Home2Screen');
+    }
+    
     renderMember(){
         return(
             <View style = {mainStyle.avatar}>
@@ -43,15 +50,17 @@ export default class Home2 extends Component {
                     onPress={()=>this.props.navigation.navigate('MemberInfoScreen', {version: this.state.user.version})}>
                     <Text style = {{fontWeight:'bold', color:'#f42535'}}>{this.state.user.first_name+' '+this.state.user.last_name}</Text>
                 </TouchableOpacity>
-                {this.state.user.id!=0?<TouchableOpacity style = {mainStyle.btnUnderName}
+                {this.state.user.id!=0?
+                    <TouchableOpacity style = {mainStyle.btnUnderName}
                     onPress={()=>this.props.navigation.navigate('MemberInfoScreen', {version: this.state.user.version})}>
-                    <View style = {{justifyContent:'center'}}>
-                        <Image source = {require('../../assets/121.png')} style = {{width:(((width*1280)/ 720) * 35) /1280, height:(((width*1280)/ 720) * 35) /1280, resizeMode:'contain'}}></Image>
-                    </View>
-                    <View style = {{marginLeft:2,}}>
-                        <Text> Thông tin tài khoản</Text>
-                    </View>
-                </TouchableOpacity>:null}
+                        <View style = {{justifyContent:'center'}}>
+                            <Image source = {require('../../assets/121.png')} style = {{width:(((width*1280)/ 720) * 35) /1280, height:(((width*1280)/ 720) * 35) /1280, resizeMode:'contain'}}></Image>
+                        </View>
+                        <View style = {{marginLeft:2,}}>
+                            <Text> Thông tin tài khoản</Text>
+                        </View>
+                    </TouchableOpacity>
+                :null}
                 {this.state.user.version!='guest'?
                 <TouchableOpacity style = {mainStyle.btnUnderName}
                     onPress={()=>this.props.navigation.navigate('TransactionHistoriesScreen')}>
@@ -62,6 +71,17 @@ export default class Home2 extends Component {
                         <Text> Lịch sử giao dịch</Text>
                     </View>
                 </TouchableOpacity>:null}
+                {this.state.user.id!=0?
+                    <TouchableOpacity style = {mainStyle.btnUnderName}
+                        onPress={()=>this.onLogout()}>
+                        <View style = {{justifyContent:'center'}}>
+                            <Icon type="AntDesign" name="logout" style={{color:'#f42535', fontSize: 20}} />
+                        </View>
+                        <View style = {{marginLeft:2,}}>
+                            <Text>Đăng xuất</Text>
+                        </View>
+                    </TouchableOpacity>
+                :null}
             </View>
         )
     }

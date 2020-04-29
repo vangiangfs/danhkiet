@@ -3,7 +3,9 @@ import React, {Component} from 'react';
 import {View, Text, ImageBackground, Image, TouchableOpacity} from 'react-native';
 
 import mainStyle from '../src/styles/Style';
-import {getStorage} from '../src/api/storage';
+import {getStorage, saveStorage} from '../src/api/storage';
+
+import {getMemberInfo} from '../src/api/apiMember';
 
 export default class Home extends Component{
 	static navigationOptions = ({ navigation }) => ({
@@ -19,8 +21,23 @@ export default class Home extends Component{
 		
 		getStorage('user')
         .then(user => { 
-            if(user != '')
-				this.props.navigation.navigate('MemberScreen');
+            if(user != ''){
+				let arrUser = JSON.parse(user);
+
+				getMemberInfo(arrUser.id)
+                .then((responseJson) => {
+                    if(responseJson.error == '0'){
+                        saveStorage('user', JSON.stringify(responseJson.user));
+                    }
+				}).done();
+				
+				if(arrUser.version=='guest')
+					this.props.navigation.navigate('Home2Screen');
+				else
+					this.props.navigation.navigate('MemberScreen');
+
+			}else
+				this.props.navigation.navigate('Home2Screen');
         });
     }
 	
