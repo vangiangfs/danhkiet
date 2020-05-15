@@ -35,7 +35,7 @@ export default class Member extends Component {
 
     onLogout() {
         saveStorage('user', '');
-        this.props.navigation.navigate('HomeScreen');
+        this.props.navigation.navigate('Home2Screen');
     }
 
     renderMember(){

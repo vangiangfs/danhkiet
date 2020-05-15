@@ -62,7 +62,7 @@ export default class Home extends Component{
 					</View>
 					<View style = {mainStyle.content_1b}>
 						<Text style = {mainStyle.textContent_1b}>Chào mừng bạn, </Text>
-						<Text style = {mainStyle.textContent_1b}>đã đến với App Trắc Địa</Text>
+						<Text style = {mainStyle.textContent_1b}>đã đến với App đo đạc và máy trắc địa</Text>
 					</View>
 					<View style = {mainStyle.content_1c}>
 						<TouchableOpacity style = {this.state.version=='guest'?mainStyle.button_1__Content_1c:mainStyle.button_2__Content_1c}

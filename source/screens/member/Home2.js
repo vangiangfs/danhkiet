@@ -99,7 +99,7 @@ export default class Home2 extends Component {
                         <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}
                             onPress={()=>this.props.navigation.navigate('SearchScreen')}>
                             <Image source = {require('../../assets/search.png')} style = {mainStyle.iconBtn}></Image>
-                            <Text style = {mainStyle.redColor}>Dịch vu</Text>
+                            <Text style = {mainStyle.redColor}>Đặt dịch vu</Text>
                             <Text style = {mainStyle.redColor}>đo đạc</Text>
                         </TouchableOpacity>
                     </View>
@@ -124,22 +124,21 @@ export default class Home2 extends Component {
                             onPress={()=>this.props.navigation.navigate('TermsUseScreen', {id:4})}>
                             <Image source = {require('../../assets/phammem.png')} style = {mainStyle.iconBtn}></Image>
                             <Text style = {mainStyle.redColor}>Phần mềm</Text>
-                            <Text style = {mainStyle.redColor}>đo đạc</Text>
+                            <Text style = {mainStyle.redColor}>trắc địa</Text>
                         </TouchableOpacity>
                     </View>
                     <View style = {mainStyle.boundBtn_5}>
                         <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}
                             onPress={()=>this.props.navigation.navigate('TermsUseScreen', {id:5})}>
                             <Image source = {require('../../assets/dichvukhac.png')} style = {mainStyle.iconBtn}></Image>
-                            <Text style = {mainStyle.redColor}>Dịch vụ</Text>
-                            <Text style = {mainStyle.redColor}>Khác</Text>
+                            <Text style = {mainStyle.redColor}>Hướng dẫn</Text>
                         </TouchableOpacity>
                     </View>
                     <View style = {mainStyle.boundBtn_6}>
                         <TouchableOpacity style = {{width:width/3, alignItems:'center', justifyContent:'center'}}
                             onPress={()=>this.props.navigation.navigate('RegisterScreen', {version: 'technical'})}>
                             <Image source = {require('../../assets/14.png')} style = {mainStyle.iconBtn}></Image>
-                            <Text style = {mainStyle.redColor}>Trở thành TK </Text>
+                            <Text style = {mainStyle.redColor}>Trở thành</Text>
                             <Text style = {mainStyle.redColor}>kỹ thuật</Text>
                         </TouchableOpacity>
                     </View>
