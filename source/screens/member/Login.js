@@ -125,7 +125,7 @@ export default class Login extends Component{
                     <View style = {mainStyle.content_1c_login}>
                         <View style = {mainStyle.inputTaiKhoan}>
                             <Image source={require('../../assets/iconLogin1.png')} style = {mainStyle.imageTextInput}/>
-                            <TextInput style={mainStyle.textInputLoginClient} placeholder="Email/Số điện thoại" keyboardType='phone-pad'
+                            <TextInput style={mainStyle.textInputLoginClient} placeholder="Email/Số điện thoại"
                                 returnKeyType="next"
                                 onSubmitEditing={() =>this.logPassword.focus()}
                                 onChangeText={(username) => this.setState({username})} />

@@ -11,7 +11,7 @@ export default class AccountExtension extends Component {
         return(
             <Container>
                 <HeaderBase page="home" title={'Gia hạn tài khoản'} navigation={navigation} />
-                <View style = {mainStyle.body4}>
+                {/*<View style = {mainStyle.body4}>
                     <View style = {mainStyle.body4_content1}>
                         <Image source = {require('../../assets/iconThanhToan.png')} style = {{width:150 * standarWidth/width , height:150 * standarHeight/height, resizeMode:'cover'}}></Image>
                     </View>
@@ -61,7 +61,7 @@ export default class AccountExtension extends Component {
                     <TouchableOpacity style = {{justifyContent:'center', alignItems:'center',height:'100%'}}>
                         <Text style = {{color:'#ffffff',fontSize:15,fontWeight:'bold'}}>THANH TOÁN</Text>
                     </TouchableOpacity>
-                </View>
+                </View>*/}
             </Container>
         );
         

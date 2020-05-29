@@ -84,7 +84,8 @@ export default class Member extends Component {
                 <ImageBackground style = {{flex:1}} source = {require('../../assets/backgroundImage5.png')} style = {mainStyle.boundImg}>
                     <View style = {mainStyle.boundBtn_1}>
                         <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}
-                            onPress={()=>this.props.navigation.navigate('ClickStatisticsScreen')}>
+                            // onPress={()=>this.props.navigation.navigate('ClickStatisticsScreen')}>
+                            onPress={()=>this.props.navigation.navigate('WorksMeasureScreen')}>
                             <Image source = {require('../../assets/iconKiThuat1.png')} style = {mainStyle.iconBtn}></Image>
                             <Text style = {mainStyle.redColor}>Thống kê</Text>
                             <Text style = {mainStyle.redColor}>click</Text>
@@ -108,7 +109,7 @@ export default class Member extends Component {
                     </View>
                     <View style = {mainStyle.boundBtn_4}>
                         <TouchableOpacity style = {{width:width/4, alignItems:'center', justifyContent:'center'}}
-                            onPress={()=>this.props.navigation.navigate('TermsUseScreen')}>
+                            onPress={()=>this.props.navigation.navigate('TermsUseScreen', {id:1})}>
                             <Image source = {require('../../assets/12.png')} style = {mainStyle.iconBtn}></Image>
                             <Text style = {mainStyle.redColor}>Điều khoản</Text>
                             <Text style = {mainStyle.redColor}>sử dụng</Text>

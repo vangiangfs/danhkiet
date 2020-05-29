@@ -7,34 +7,6 @@ import HeaderBase from '../../screens/template/HeaderBase';
 import {getStorage} from '../../src/api/storage';
 import {getWorksMeasure} from '../../src/api/apiMember';
 
-const DATA2 = [
-    {
-        name : 'Lê Thái Bảo',
-        address:'Ngõ 23, Hai Bà Trưng, Hà Nội',
-        content: 'Mình cần đo khu đất của gia đình (10 giờ ngày mai nhé)'
-    },
-    {
-        name : 'Lưu Thanh Thủy',
-        address:'Ngõ 23, Hai Bà Trưng, Hà Nội',
-        content: 'Mình cần đo khu đất của gia đình (10 giờ ngày mai nhé)'
-    },
-    {
-        name : 'Trần Thị Mai Anh',
-        address:'Ngõ 23, Hai Bà Trưng, Hà Nội',
-        content: 'Mình cần đo khu đất của gia đình (10 giờ ngày mai nhé)'
-    },
-];
-const DATA1 = [
-    {
-        title:'Ngày 20 tháng 9 2019',
-    },
-    {
-        title:'Ngày 19 tháng 9 2019',
-    },
-];
-
-
-
 export default class WorksMeasure extends Component {
     constructor(props) {
         super(props);
@@ -61,7 +33,7 @@ export default class WorksMeasure extends Component {
         .then(user => { 
             if(user != ''){
                 let arrUser = JSON.parse(user);
-                console.log(arrUser);
+                // console.log(arrUser);
                 this.setState({user:arrUser}, this.makeRemoteRequest);
             }else
                 this.props.navigation.navigate('HomeScreen');
@@ -69,15 +41,17 @@ export default class WorksMeasure extends Component {
     }
 
     makeRemoteRequest = () => {
-        if(this.state.allow_more == false)
+        if(this.state.allow_more == false){
+            this.setState({ loading: false});
             return false;
+        }
     
         this.setState({ loading: true});
         
         getWorksMeasure(this.state.user.id, this.state.page)
         .then(resJSON => {
             const {list, error } = resJSON;
-    
+            
             if(error == false){
                 this.arr = this.arr.concat(list);
                 this.setState({
@@ -110,6 +84,8 @@ export default class WorksMeasure extends Component {
     };
     
     renderLoading  = () => {
+        return null;
+        
         if (!this.state.loading) {
             if(this.state.list.length > 0)
                 return null;
@@ -120,8 +96,9 @@ export default class WorksMeasure extends Component {
                     </View>
                 );
             }
+            return null;
         }
-    
+        
         return (
             <View style={{paddingVertical: 20}}>
                 <ActivityIndicator animating size="large" />
@@ -140,7 +117,7 @@ export default class WorksMeasure extends Component {
             <Container>
                 <HeaderBase page="home" title={'Công trình cần đo'} navigation={navigation} />
                 <ScrollView style = {mainStyle.lichSuGiaoDich}> 
-                    <View style = {mainStyle.monthYear}>
+                    {/* <View style = {mainStyle.monthYear}>
                         <TouchableOpacity style = {mainStyle.month}>
                             <Text>Tháng</Text>
                             <View style = {{justifyContent:'center'}}>
@@ -153,7 +130,7 @@ export default class WorksMeasure extends Component {
                                 <Image source = {require('../../assets/iconDown.png')} style = {mainStyle.iconDown}></Image>
                             </View>
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
                     <FlatList style = {mainStyle.containerFlatList} data = {this.state.list} renderItem = {({item}) =>
                         <View style = {mainStyle.row1}>
                             <View>
